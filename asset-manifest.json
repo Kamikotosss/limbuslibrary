@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/limbuslibrary/static/css/main.073c9b0a.css",
+    "main.js": "/limbuslibrary/static/js/main.daede266.js",
+    "static/js/787.321d14df.chunk.js": "/limbuslibrary/static/js/787.321d14df.chunk.js",
+    "static/media/logo.svg": "/limbuslibrary/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/limbuslibrary/index.html",
+    "main.073c9b0a.css.map": "/limbuslibrary/static/css/main.073c9b0a.css.map",
+    "main.daede266.js.map": "/limbuslibrary/static/js/main.daede266.js.map",
+    "787.321d14df.chunk.js.map": "/limbuslibrary/static/js/787.321d14df.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.daede266.js"
+  ]
+}
