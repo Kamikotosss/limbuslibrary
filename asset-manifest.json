@@ -1,13 +1,20 @@
 {
   "files": {
-    "main.css": "/limbuslibrary/static/css/main.44215db2.css",
-    "main.js": "/limbuslibrary/static/js/main.10db3390.js",
+    "main.css": "/limbuslibrary/static/css/main.2279cd2d.css",
+    "main.js": "/limbuslibrary/static/js/main.4a16d640.js",
+    "static/media/limbus.png": "/limbuslibrary/static/media/limbus.31e8ba4c6a821955860b.png",
+    "static/media/AlumniSans-SemiBold.ttf": "/limbuslibrary/static/media/AlumniSans-SemiBold.c431bd670b00b03d53e1.ttf",
+    "static/media/AlumniSans-Bold.ttf": "/limbuslibrary/static/media/AlumniSans-Bold.9987a2e1fa36bf2088f2.ttf",
+    "static/media/AlumniSans-Black.ttf": "/limbuslibrary/static/media/AlumniSans-Black.ee66e3e1503ac192be37.ttf",
+    "static/media/AlumniSans-Medium.ttf": "/limbuslibrary/static/media/AlumniSans-Medium.e7604b325cfb6339c34e.ttf",
+    "static/media/AlumniSans-Regular.ttf": "/limbuslibrary/static/media/AlumniSans-Regular.9f1b28d507f3b93f8b6b.ttf",
+    "static/media/AlumniSans-Light.ttf": "/limbuslibrary/static/media/AlumniSans-Light.a6ad1574e3ac935fea12.ttf",
     "index.html": "/limbuslibrary/index.html",
-    "main.44215db2.css.map": "/limbuslibrary/static/css/main.44215db2.css.map",
-    "main.10db3390.js.map": "/limbuslibrary/static/js/main.10db3390.js.map"
+    "main.2279cd2d.css.map": "/limbuslibrary/static/css/main.2279cd2d.css.map",
+    "main.4a16d640.js.map": "/limbuslibrary/static/js/main.4a16d640.js.map"
   },
   "entrypoints": [
-    "static/css/main.44215db2.css",
-    "static/js/main.10db3390.js"
+    "static/css/main.2279cd2d.css",
+    "static/js/main.4a16d640.js"
   ]
 }
