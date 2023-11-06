@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/limbuslibrary/static/css/main.bda8c29e.css",
-    "main.js": "/limbuslibrary/static/js/main.ab81a293.js",
-    "static/media/limbus.png": "/limbuslibrary/static/media/limbus.31e8ba4c6a821955860b.png",
-    "static/media/AlumniSans-SemiBold.ttf": "/limbuslibrary/static/media/AlumniSans-SemiBold.c431bd670b00b03d53e1.ttf",
-    "static/media/AlumniSans-Bold.ttf": "/limbuslibrary/static/media/AlumniSans-Bold.9987a2e1fa36bf2088f2.ttf",
-    "static/media/AlumniSans-Black.ttf": "/limbuslibrary/static/media/AlumniSans-Black.ee66e3e1503ac192be37.ttf",
-    "static/media/AlumniSans-Medium.ttf": "/limbuslibrary/static/media/AlumniSans-Medium.e7604b325cfb6339c34e.ttf",
-    "static/media/AlumniSans-Regular.ttf": "/limbuslibrary/static/media/AlumniSans-Regular.9f1b28d507f3b93f8b6b.ttf",
-    "static/media/AlumniSans-Light.ttf": "/limbuslibrary/static/media/AlumniSans-Light.a6ad1574e3ac935fea12.ttf",
-    "index.html": "/limbuslibrary/index.html",
-    "main.bda8c29e.css.map": "/limbuslibrary/static/css/main.bda8c29e.css.map",
-    "main.ab81a293.js.map": "/limbuslibrary/static/js/main.ab81a293.js.map"
+    "main.css": "/static/css/main.6673cfff.css",
+    "main.js": "/static/js/main.ab81a293.js",
+    "static/media/limbus.png": "/static/media/limbus.31e8ba4c6a821955860b.png",
+    "static/media/AlumniSans-SemiBold.ttf": "/static/media/AlumniSans-SemiBold.c431bd670b00b03d53e1.ttf",
+    "static/media/AlumniSans-Bold.ttf": "/static/media/AlumniSans-Bold.9987a2e1fa36bf2088f2.ttf",
+    "static/media/AlumniSans-Black.ttf": "/static/media/AlumniSans-Black.ee66e3e1503ac192be37.ttf",
+    "static/media/AlumniSans-Medium.ttf": "/static/media/AlumniSans-Medium.e7604b325cfb6339c34e.ttf",
+    "static/media/AlumniSans-Regular.ttf": "/static/media/AlumniSans-Regular.9f1b28d507f3b93f8b6b.ttf",
+    "static/media/AlumniSans-Light.ttf": "/static/media/AlumniSans-Light.a6ad1574e3ac935fea12.ttf",
+    "index.html": "/index.html",
+    "main.6673cfff.css.map": "/static/css/main.6673cfff.css.map",
+    "main.ab81a293.js.map": "/static/js/main.ab81a293.js.map"
   },
   "entrypoints": [
-    "static/css/main.bda8c29e.css",
+    "static/css/main.6673cfff.css",
     "static/js/main.ab81a293.js"
   ]
 }
