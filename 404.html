@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <!-- <meta http-equiv="refresh" content="0;url=/#/tierlist"> -->
-  </head>
-  <body>
-    <!-- <script>
-      window.location.href = '/tierlist';
-    </script> -->
-    <script>
-        // Получаем текущий путь страницы
-        var currentPath = window.location.pathname;
-        
-        // Проверяем, если текущий путь не содержит /#/ и не пуст
-        if (!currentPath.includes('/#/') && currentPath !== '/') {
-          // Строим новый URL с /#/ и перенаправляем
-          var newPath = '/#/' + currentPath.substr(1); // Удаляем начальный слеш
-          window.location.href = newPath;
-        }
-      </script>
-  </body>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta
+          name="description"
+          content="Web site created using create-react-app"
+        />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <title>GLL</title>
+      </head>
+      <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+      </body>
 </html>
