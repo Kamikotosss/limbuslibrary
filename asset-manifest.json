@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.30ff2b52.css",
-    "main.js": "/static/js/main.c44595e5.js",
+    "main.css": "/static/css/main.7b9632f7.css",
+    "main.js": "/static/js/main.0bb8e36b.js",
     "static/media/limbus.png": "/static/media/limbus.31e8ba4c6a821955860b.png",
     "static/media/AlumniSans-SemiBold.ttf": "/static/media/AlumniSans-SemiBold.c431bd670b00b03d53e1.ttf",
     "static/media/AlumniSans-Bold.ttf": "/static/media/AlumniSans-Bold.9987a2e1fa36bf2088f2.ttf",
@@ -10,11 +10,11 @@
     "static/media/AlumniSans-Regular.ttf": "/static/media/AlumniSans-Regular.9f1b28d507f3b93f8b6b.ttf",
     "static/media/AlumniSans-Light.ttf": "/static/media/AlumniSans-Light.a6ad1574e3ac935fea12.ttf",
     "index.html": "/index.html",
-    "main.30ff2b52.css.map": "/static/css/main.30ff2b52.css.map",
-    "main.c44595e5.js.map": "/static/js/main.c44595e5.js.map"
+    "main.7b9632f7.css.map": "/static/css/main.7b9632f7.css.map",
+    "main.0bb8e36b.js.map": "/static/js/main.0bb8e36b.js.map"
   },
   "entrypoints": [
-    "static/css/main.30ff2b52.css",
-    "static/js/main.c44595e5.js"
+    "static/css/main.7b9632f7.css",
+    "static/js/main.0bb8e36b.js"
   ]
 }
