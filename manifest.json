@@ -3,12 +3,13 @@
   "name": "Great Limbus Library",
   "lang": "ru",
   "categories": ["Games", "Entertainment"],
-  "description": "Great Limbus Library - это фан-сайт и база данных, разработанные сообществом, посвященные игре Limbus Company. Гайды, Личности, ЭГО, Новости, Ивенты, Тирлисты и Тимбилдер",
+  "description": "Great Limbus Library is a fan site and community-driven database dedicated to the Limbus Company game. Guides, Personalities, EGO, News, Events, Tier Lists, and Team Builder.",
   "icons": [
     {
-      "src": "GLL.png",
-      "sizes": "64x64",
-      "type": "image/png"
+      "src": "GLLx200.png",
+      "sizes": "200x200",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
