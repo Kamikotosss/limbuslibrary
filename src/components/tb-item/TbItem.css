@@ -18,6 +18,18 @@
     position: relative; 
     border-radius: 6.4px 6.4px;
 }
+.tb-item-new{
+    position: absolute;
+    right: 3.84px;
+    top: 3.84px;
+    width: fit-content;
+    padding: 1px 2px;
+    box-sizing: border-box;
+    background-color: rgb(255, 57, 57);
+    color: white;
+    font-size: 14px;
+    border-radius: 4px;
+}
 .tb-item-container .shadow{
     width: 100%;
     height: 100%;

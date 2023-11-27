@@ -23,6 +23,8 @@
 
 body {
   margin: 0;
+  overflow-y: scroll;
+  background-color: #1C1E23;
 }
 
 /**

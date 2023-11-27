@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { searchChangeValueAction } from "../../store/reducers/search-reducer";
@@ -8,6 +9,7 @@ import "./Search.css";
 
 export const Search:React.FC = () =>{
     const dispatch = useDispatch();
+    const {t} = useTranslation();
     const {targetRef} = useTypedSelector(store=>store.searchReducer);
     const inputRef = useRef<HTMLInputElement>(null);
     const [timeoutId,setTimeoutId] = useState<null|NodeJS.Timeout>(null);
@@ -40,14 +42,14 @@ export const Search:React.FC = () =>{
    
 
     return <form className="search" onSubmit={ (e) => {handleSubmit(e,targetRef) }} >
-        <input ref={inputRef} placeholder="Поиск по имени..." onChange={(e)=>{handleInputCHange(e)}}/>
+        <input ref={inputRef} placeholder={t("Search.placeholder")} onChange={(e)=>{handleInputCHange(e)}}/>
         {inputRef?.current?.value && <button className="btn-clear" type="button" onClick={ () => {
             if (inputRef.current) {
                 inputRef.current.value = '';
                 searchChangeValueAction(dispatch, "");
             }
         }}><XMarkSVG/></button>}
-        <button className="btn-search" type="submit"><SearchSVG/></button>
+        <button aria-label="apply filter by name" className="btn-search" type="submit"><SearchSVG/></button>
         <div className={`search-loader ${!timeoutId && "search-loader--hidden"}`}>
             <div className="search-gray-line"></div>
             <div className="search-white-line"></div>

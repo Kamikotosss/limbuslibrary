@@ -6,7 +6,9 @@
     flex-wrap: wrap;
     position: relative;
 }
-
+.entity-section .item-entity-container {
+  transition: 1s;
+}
 .entity-section .release-date{
   display: flex;
   flex-direction: row;

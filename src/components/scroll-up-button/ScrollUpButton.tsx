@@ -17,7 +17,7 @@ export const ScrollUpButton:React.FC = () =>{
         };
 
       },[])
-    return <button className={`scroll-up-button ${isArrowVisible && "scroll-up-button--visible"}`}onClick={ ()=>window.scrollTo({top: 0,behavior: 'smooth'}) }>
+    return <button aria-label="Scroll to Top" className={`scroll-up-button ${isArrowVisible && "scroll-up-button--visible"}`} onClick={ ()=>window.scrollTo({top: 0,behavior: 'smooth'}) }>
        <ArrowUpSVG/>
     </button>
 }

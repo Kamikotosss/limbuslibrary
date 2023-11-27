@@ -5,7 +5,7 @@
 }
 .tb-slots-container{
     width: 100%;
-    margin-top: 80px;
+    margin-top: 20px;
     margin-bottom: 19.2px;
     padding: 16px 1.6px;
     position: relative;
@@ -30,7 +30,9 @@
     transition:0.5s;
     opacity: 1;
 }
-
+.tb-slots-container--gloving{
+    box-shadow: 0 0 4px #3AA1FF;
+}
 .tb-slots-slot{
     display: flex;
     flex-direction: column;
@@ -195,15 +197,14 @@
 }
 
 .tb-slots-reset{
-    position: absolute;
     height: 32px;
     box-sizing: border-box;
     border-radius: 4.8px;
     top:16px;
     right: 0px;
     cursor: pointer;
-    color: white;
-    border: 0.8px solid white;
+    color: #3AA1FF;
+    border: 0.8px solid #3AA1FF;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -221,12 +222,13 @@
 }
 .tb-slots-reset svg path{
     transition: 0.4s;
+    stroke:#3AA1FF;
+
 }
 .tb-slots-reset:hover svg path{
     stroke:#131319;
 }
 .tb-slots-toggle{
-    position: absolute;
     top:16px;
     right: 96px;
     cursor: pointer;
@@ -249,7 +251,7 @@
 .tb-slots-btnLeft {
     position: absolute;
     left: 0;
-    top: 52%;
+    top: 50%;
     z-index: 5;
     transform: translateX(calc(-100% - 16px));
     opacity: 1;
@@ -260,7 +262,7 @@
     position: absolute;
     right: 0;
     z-index: 5;
-    top: 52%;
+    top: 50%;
     transform: translateX(calc(100% + 16px));
     opacity: 1;
     transition: 0.4s;
@@ -269,24 +271,19 @@
 .tb-slots-btnSlotText {
     padding: 8px 0;
     font-size: 24px;
-    position: absolute;
-    left: 0;
-    top: 11.2px;
 }
 
 .tb-slots-btnSlotCount {
-    border: 1px solid white;
+    border: 1px solid #3AA1FF;
     border-radius: 4.8px;
     width: fit-content;
     height: fit-content;
-    position: absolute;
-    left: 168px;
-    top: 16px;
     height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    color:#3AA1FF;
 }
 
 .tb-slots-btnSlotCount button,
@@ -298,12 +295,22 @@
 .hidden {
     opacity: 0;
 }
+.tb-slots-collapse-wrapper{
+    flex-direction: row;
+    align-items: center;
+}
+@media(max-width:600px){
+    .tb-slots-collapse-wrapper{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
 @media(max-width:1000px){
     .tb-slots-btnLeft , .tb-slots-btnRight{
         display: none;
     }
 }
-@media(max-width:475px){
+@media(max-width:650px){
     .tb-slots-toggle{
         display: none;
     }
@@ -313,10 +320,6 @@
         top: -65px;
         right: 10px;
 
-    }
-    .tb-slots-btnSlotText{
-        font-size: 30px;
-        top:8px;
     }
     .tb-slots-btnSlotCount{
         right: 10px;

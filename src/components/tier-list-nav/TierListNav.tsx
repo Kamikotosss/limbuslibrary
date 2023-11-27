@@ -1,23 +1,24 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Link, useParams } from "react-router-dom";
 import "./TierListNav.css";
 
 export const TierListNav:React.FC = () => {
-    const location = useLocation();
-    const params = new URLSearchParams(location.search);
-    const type = params.get('type');
+    const params = useParams();
+    const type = params["type"];
+    const {t,i18n} = useTranslation();
     const routes = [
         {
             path:"identities",
-            name:"Личности"
+            name:t("TierListNav.identities")
         },
         {
             path:"ego",
-            name:"ЭГО"
+            name:t("TierListNav.ego")
         },
         {
             path:"passives",
-            name:"Пассивки"
+            name:t("TierListNav.passives")
         }
     ];
     return (
@@ -28,7 +29,7 @@ export const TierListNav:React.FC = () => {
                         routes.map((route)=>{
                             return(
                                 <li key={`${route.path}`}>
-                                    <Link className={type === route.path ? "tier-list-nav--active" : ""} to={`/tierlist?type=${route.path}`}>
+                                    <Link className={type === route.path ? "tier-list-nav--active" : ""} to={`/${i18n.language}/tierlist/${route.path}`}>
                                         {route.name}
                                     </Link>
                                     {type === route.path && <div className="tier-list-nav-line"/>}

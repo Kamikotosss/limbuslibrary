@@ -1,12 +1,86 @@
 .contact-info{
     color:white;
     width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 
+.contact-info h1{
+    font-size: 46px;
+    margin-top: 28px;
+    margin-bottom: 28px;
+}
+.color-blue {
+    color:#3AA1FF;
 }
 .contact-info h2{
     font-size: 32px;
+    margin-top: 28px;
+    margin-bottom: 28px;
+   
 }
-.contact-info button{
+.discord{
+    position: relative;
+}
+.contacts-honorable-list{
+    margin-left: 150px;
+}
+.contacts-honorable-list h2{
+    font-size: 46px;
+    margin-top: 28px;
+}
+.contacts-honorable-list h3{
+    font-size: 32px;
+    margin-top: 28px;
+
+}
+.contacts-honorable-list ul{
+}
+.contacts-honorable-list li{
+    font-size: 26px;
+    margin-top: 5px;
+    font-weight: 500;
+
+}
+@media (max-width:1200px){
+    .contact-info{
+        flex-direction: column;
+    }
+    .contacts-honorable-list{
+        margin-left: 0px;
+    }
+}
+@keyframes dissappear {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+}
+.contact-tooltip {
+    display: flex;
+    position: absolute;
+    text-align: center;
+    width: fit-content;
+    background-color: #333;
+    color: #fff;
+    font-size: 14.4px;
+    padding: 4px;
+    border-radius: 4px;
+    z-index: 1000;
+    top: -1.6px;
+    transform: translate(0, -100%);
+    font-weight: 500;
+    opacity: 0;
+}
+
+.contact-tooltip--active {
+    opacity: 1;
+}
+  
+.contact-info button {
     height: 75px;
     width: 75px;
     opacity: 0.8;
@@ -15,7 +89,7 @@
     margin-right: 50px;
     opacity: 1;
 }
-.contact-info button:hover{
+.contact-info button:hover {
     opacity: 1;
     transform: scale(1.2);
 }

@@ -28,7 +28,7 @@
 .event-sector img {
   margin-bottom: 16px;
   width:  100%;
-
+  min-height: 130px;
 }
 .event-sector--animated{
   animation: bounceAnimation 1s ease forwards;

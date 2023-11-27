@@ -1,11 +1,13 @@
 import { useRef } from "react"
+import { useTranslation } from "react-i18next"
 import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver"
 import "./ToDoSection.css"
 export const ToDoSection: React.FC = () => {
+    const {t} = useTranslation();
     const todos = [
-        "Добавление гайдов",
-        "Улучшение функционала тим билдера",
-        "Общие улучшения интерфейса и содержимого сайта",
+        t("ToDoSection.1"),
+        t("ToDoSection.2"),
+        t("ToDoSection.3")
     ]
     const AnimatedList:React.FC<{text:string}> = ({text}) => {
         const listRef = useRef(null);
@@ -15,8 +17,8 @@ export const ToDoSection: React.FC = () => {
         </li>
     }
     return <section className="todo-section">
-    <h2> Планы по улучшению сайта </h2>
-    <p>Если у вас есть идеи или предложения пожалуйста сконтактируйтесь с нами</p>
+    <h2> {t("ToDoSection.header")} </h2>
+    <p>{t("ToDoSection.contactUs")} </p>
     <ul>
      {todos.map((todo,index)=>{
         return <AnimatedList text={todo} key={index}/> 

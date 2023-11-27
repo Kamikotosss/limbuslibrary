@@ -1,7 +1,9 @@
+import { useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
 import { rarityEGOType } from "../../../constants/types";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { filterChangeTypeAction, filterClearSectionAction } from "../../../store/reducers/filter-reducer";
+import { StatusesInterface } from "../../../store/reducers/statuses-reducer";
 import { EraserSVG } from "../../svg/EraserSvg";
 import { FilterButton } from "../filter-button/FilterButton";
 
@@ -15,6 +17,7 @@ type TFilter = {
 }
 export const FiltersSection:React.FC<{filter:TFilter}> = ({filter}) => {
     const filterState = useTypedSelector(state => state.filterReducer);
+    const statuses = useQueryClient().getQueryData("statuses") as StatusesInterface[]|null;
     const dispatch = useDispatch();
     let countActive = 0;
     const handleFilterChange = (key:string) =>filterChangeTypeAction(dispatch,key);
@@ -27,9 +30,11 @@ export const FiltersSection:React.FC<{filter:TFilter}> = ({filter}) => {
         if(typeof subtype !== "object"){
             let isTypeActive = currentType[subtype as keyof typeof currentType];
             if(isTypeActive) countActive++;
-            return <FilterButton 
+           
+            return <FilterButton
+            name={subtype}
             handleFilterChange={()=>handleFilterChange(subtype)} 
-            imgSrc={`./images/${filter.imgsFolder}/${subtype}${filter.imgExtension}`}
+            imgSrc={`${process.env.PUBLIC_URL}/images/${filter.imgsFolder}/${subtype}${filter.imgExtension}`}
             isTypeActive={isTypeActive}
             type={subtype}
             key={subtype} />

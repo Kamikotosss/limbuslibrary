@@ -9,25 +9,37 @@
     font-size: 19.2px;
     font-weight: 400;
 }
-
+td .perCent-special-font{
+    font-size: 20px;
+}
+.statuses-section:nth-of-type(2) h2{
+    margin-top: 15px;
+}
 .status-tooltip{
-    display: none; 
+    display: block; 
     position: absolute;
     text-align: center;
-    width: fit-content;
+    width: max-content;
+    max-width: 95px;
     background-color: #333;
     color: #fff;
     font-size: 14.4px;
-    padding: 4px;
+    padding: 4px 6px;
     border-radius: 4px;
-    z-index: 1000;
+    z-index: 2;
     top: -1.6px;
-    transform: translate(0,-100%);
-    animation: fadeIn 0.5s ease;
+    transform: translate(0,-150%);
     font-weight: 500;
-  }
+    opacity: 0;
+    transition: 0.4s;
+    pointer-events: none;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
 button:hover .status-tooltip{
-    display: flex; 
+    opacity: 1;
+    transform: translate(0,-100%);
+
 }
 .statuses-table img {
     width: 40px;
@@ -134,9 +146,15 @@ button:hover .status-tooltip{
     .statuses-table tbody td{
        font-size: 0.8em;
     }
+    td .perCent-special-font{
+        font-size: 0.8em;
+    }
 }
 @media (max-width: 370px) {
     .statuses-table tbody td{
        font-size: 0.7em;
+    }
+    td .perCent-special-font{
+        font-size: 0.7em;
     }
 }

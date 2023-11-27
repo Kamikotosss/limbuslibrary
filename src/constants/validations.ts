@@ -1,5 +1,36 @@
 import { sinnerTypes ,guardTypes ,damageTypes,rarityEGOTypes,rarityIdentityTypes,sinTypes, tierTypes} from "./skillBasedTypes";
 import { dmgType, guardType, rarityEGOType, rarityIdentityType, sinnerType, sinType } from "./types";
+export const validationToNumbersArray = (a:unknown) => {
+    let validatedVal:number[] = [];
+    let isValid = true;
+    if(typeof a === "string"){
+        const arr = a.split(",");
+        for(let i = 0; i < arr.length;i++){
+            const current = +arr[i];
+            if(isNaN(current)) continue;
+            validatedVal.push(current); 
+        }
+    }else if (typeof a === "number"){
+        validatedVal.push(a); 
+    }
+    return {validatedVal,isValid};
+}
+export const validationToStringsArray = (a:unknown) => {
+    let validatedVal:string[] = [];
+    let isValid = true;
+    if(typeof a === "string"){
+        const arr = a.split(",");
+        for(let i = 0; i < arr.length;i++){
+            const current = arr[i];
+            if(typeof current !== "string"){
+                isValid = false 
+                break;
+            }
+        }
+        validatedVal = arr;
+    } 
+    return {validatedVal,isValid};
+}
 export const validationToTier = (a:unknown) => {
     return {validatedVal:a ,isValid:tierTypes.includes(a as string)};
 }
@@ -14,6 +45,17 @@ export const validationToRarityEGOTypes = (a:unknown) => {
 }
 export const validationToDamageTypes = (a:unknown) => {
     return {validatedVal:a ,isValid:damageTypes.includes(a as dmgType)};
+}
+export const validationToDamageTypesArray = (a:unknown) => {
+    const str = a as string;
+    let isValid = true;
+    str.split(",").forEach(
+        s => {
+            const isValidVal = damageTypes.includes(s as dmgType);
+            if(!isValidVal) isValid = false;
+        }
+    )
+    return {validatedVal:str.split(",") ,isValid};
 }
 export const validationToGuardTypes = (a:unknown) => {
     return {validatedVal:a ,isValid:guardTypes.includes(a as guardType)};

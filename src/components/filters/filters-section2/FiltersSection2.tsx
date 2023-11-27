@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
 import { tagsIds } from "../../../constants/skillBasedTypes";
@@ -16,6 +17,7 @@ export const FiltersSection2:React.FC = () => {
     const dispatch = useDispatch();
     const handleFilterChange = (key:string) =>filterChangeTypeAction(dispatch,key);
     const handleClearSection = (section:string) =>  filterClearSectionAction(dispatch,section);
+    const {t,i18n} = useTranslation();
     let countActive = 0;
 
     useEffect(() => {
@@ -36,15 +38,21 @@ export const FiltersSection2:React.FC = () => {
         let isTypeActive = currentType[subtype as keyof typeof currentType];
         if(isTypeActive) countActive++;
         if (!subtype) return null;
+        const status = statuses?.find(s=>s.id === subtype);
+
+        const nameKey = `name${i18n.language.toUpperCase()}` as keyof typeof status;
+        const name = status ? status[nameKey] as string : "";
+
         return <FilterButton 
         handleFilterChange={()=>handleFilterChange(subtype)} 
-        imgSrc={`./images/${"tags"}/${subtype}${".png"}`}
+        imgSrc={`${process.env.PUBLIC_URL}/images/tags/${subtype}.webp`}
         isTypeActive={isTypeActive}
         type={subtype}
+        name={`${name}`}
         key={subtype} />
     })}
        <header>
-        {"Тип статуса"}
+        {t("FiltersList.header.statusType")}
         {countActive >= 1 && <button className="filters-clear-section" onClick={()=>handleClearSection(type)}><EraserSVG/></button>}
         </header>
        <button 

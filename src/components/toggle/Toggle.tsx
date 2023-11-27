@@ -14,7 +14,7 @@ export const Toggle: React.FC<{click:Function,positionClass:string}> = ({click,p
   return (
     <div className={`${positionClass}`}>
         <label className={`toggle`}>
-            <input type="checkbox" checked={isChecked} onChange={handleChange} />
+            <input aria-label="toggle team builder layout" type="checkbox" checked={isChecked} onChange={handleChange} />
             <div className="toggle-slider">
                 <span className={`status-text ${isChecked ? 'on' : 'off'} `}>
                     {!isChecked ? <LineSVG/> : <GridSVG/>}

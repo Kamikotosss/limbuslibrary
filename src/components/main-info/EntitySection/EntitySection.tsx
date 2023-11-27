@@ -1,4 +1,5 @@
 import React, {useRef} from "react";
+import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver";
 import { EGOInterface } from "../../../store/reducers/ego-reducer";
@@ -14,7 +15,7 @@ interface EntitySectionBarProps {
 export const EntitySection:React.FC = () => {
     const ids = useQueryClient().getQueryData("identities") as IdentityInterface[]|null;
     const ego = useQueryClient().getQueryData("ego") as EGOInterface[]|null;
-    
+    const {t , i18n} = useTranslation();
     function dateToExcel(jsDate:Date) {
         const excelStartDate = new Date(1899, 11, 30);
         const millisecondsPerDay = 24 * 60 * 60 * 1000;
@@ -30,7 +31,9 @@ export const EntitySection:React.FC = () => {
       
       const formateDate = (date:number) =>{
         const newDate = excelToDate(date);
-        return `${newDate.getDate()}.${newDate.getMonth()+1}.${newDate.getFullYear()}`
+        const month = `${newDate.getMonth()+1}`;
+        const day = `${newDate.getDate()}`;
+        return `${day.length === 1 ? `0${day}`: day}.${month.length === 1 ? `0${month}`: month}.${newDate.getFullYear()}`
       }
     const findNLatestDates = (ids:IdentityInterface[], egos:EGOInterface[] , N:number) =>{
         const allData: Array<IdentityInterface | EGOInterface> = [...ids,...egos];
@@ -83,7 +86,7 @@ export const EntitySection:React.FC = () => {
     }
     
     return <section className="entity-section"> 
-        <h2> Недавно вышедшие Личности и ЭГО </h2>
+        <h2>{t('EntitySection.new')}</h2>
         { ids && ego && findNLatestDates(ids,ego,10).map((section,index)=>{
                 return <EntitySectionBar key={index} section={section}/>
             })

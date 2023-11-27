@@ -3,17 +3,48 @@ import { sinType } from "../../constants/types";
 export type EGOInterface = {
     [key in sinType]: number;
 } & {
-    imgUrl: number;
+    imgUrl: string;
     sinner: string;
-    season: number;
-    name: string;
+
+    nameRU: string;
+    nameEN: string;
+
     rarity: string;
-    egoRes: string;
+    season: number;
+    egoResists:string[];
+    sanity:number[];
+
+    wrath:number;
+    lust:number;
+    sloth:number;
+    glut:number;
+    gloom:number;
+    pride:number;
+    envy:number;
+
+    egoSin: string;
+    dmgType: string[];
+    basicCoin: number[];
+    growthPerCoin: number[];
+    maxCoinValue: number[];
+
+    nameSkillRU: string[];
+    nameSkillEN: string[];
+
+    weightCoin:number[];
+
+    descriptionCoinRU:string;
+    namePassiveRU:string;
+    descriptionPassiveRU:string;
+
+    descriptionPassiveEN:string;
+    descriptionCoinEN:string;
+    namePassiveEN:string;
+
     egoTier: string;
-    sanity: number;
-    status: string|null;
-    dmgType: string;
     releaseDate:number;
+    isNew:string
+
 };
 export enum EGOActionTypes {
     FETCH_EGO = "FETCH_EGO",

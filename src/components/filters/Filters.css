@@ -94,33 +94,35 @@
 }
 
 .filters-filter-tooltip{
-  display: none; 
+  display: block; 
   position: absolute;
+  width: max-content;
+  max-width: 95px;
   text-align: center;
   background-color: #333;
   color: #fff;
   font-size: 14.4px;
-  padding: 4px;
+  padding: 4px 6px;
   border-radius: 4px;
-  z-index: 1000;
+  z-index: 2;
+  font-weight: 600;
   top: -1.6px;
-  transform: translate(0,-100%);
-  animation: fadeIn 0.5s ease;
+  transform: translate(0,-150%);
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.4s;
+  border: 1px solid black;
+  box-sizing: border-box;
 }
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+
 .filters-filter:hover{
   box-shadow: 0px 6.4px 13.6px 1.6px rgba(0,0,0,0.14), 0px 2.4px 11.2px 1.6px rgba(0,0,0,0.12), 0px 4px 4px -2.4px rgba(0,0,0,0.2);
 }
 
 .filters-filter:hover .filters-filter-tooltip {
-  display: block; 
+  opacity: 1;
+  transform: translate(0,-100%);
+
 }
 .filters-filter--active{
   background: linear-gradient(180deg, #474A56 0%, rgba(71, 74, 86, 0.00) 193.52%);
@@ -154,7 +156,7 @@
   background-color: #1C1E23;
   border-radius: 8px;
   box-sizing: border-box;
-  padding: 40px 20px 30px;
+  padding: 40px 40px 30px;
   overflow: auto;
   column-gap:16px;
   row-gap:30px;

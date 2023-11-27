@@ -1,4 +1,5 @@
 import React, {useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { StatusesInterface} from "../../store/reducers/statuses-reducer";
 import "./StatusesTable.css";
@@ -6,15 +7,21 @@ import "./StatusesTable.css";
 interface TableRowProps extends StatusesInterface{
     reference?: HTMLElement | null;
     id:string;
-    name:string;
-    description:string;
+    nameEN:string;
+    nameRU:string;
+    descriptionEN:string;
+    descriptionRU:string;
 }
 export const StatusesTable:React.FC = () => {
     const statuses = useQueryClient().getQueryData("statuses") as StatusesInterface[]|null;
+    const {t,i18n} = useTranslation();
     const statusesExtended:TableRowProps[] = statuses || [];
     const [animatedClass , setAnimatedClass ] = useState("");
     const [timeoutId, setTimeoutId] = useState<null|NodeJS.Timeout>(null);
-    const buttonsSections = [{unit:"sinner",header:"Статусы которые встречаются у грешников"} , {unit:"anomaly",header:"Статусы которые встречаются у аномалий"}];
+    const buttonsSections = [
+        {unit:"sinner",header:t("StatusesTable.header.sinner")} , 
+        {unit:"anomaly",header:t("StatusesTable.header.anomaly")}
+    ];
     const handleScrollHighlight = (id:string,index:number) => {
         if (timeoutId) clearTimeout(timeoutId);
 
@@ -42,12 +49,15 @@ export const StatusesTable:React.FC = () => {
                 <h2>{section.header}</h2>
                 <article className={"statuses-buttons"} >
                     {statuses?.map((status,index)=>{
+                        const nameKey = `name${i18n.language.toUpperCase()}` as keyof typeof status;
+                        const name = status[nameKey] as string;
+
                         if(section.unit === status.unit)
                         return <button
-                        key={status.name}
+                        key={status.id}
                         onClick={()=>{handleScroll(status.id,index)}}>
-                            <div className="status-tooltip">{status.id}</div>
-                            <img  src={`./images/tags/${status.id}.png`} alt={``} />
+                            <div className="status-tooltip">{name}</div>
+                            <img  src={`${process.env.PUBLIC_URL}/images/tags/${status.id}.webp`} alt={status.id} />
                         </button>
                     })}
                 </article>
@@ -58,24 +68,33 @@ export const StatusesTable:React.FC = () => {
             <thead>
                 <tr>
                     <th className="statuses-table-th-image">
-                        Статус
+                        {t("StatusesTable.status")}
                     </th>
                     <th className="statuses-table-th-name">
-                        Название
+                        {t("StatusesTable.name")}
                     </th>
                     <th className="statuses-table-th-description">
-                        Описание
+                        {t("StatusesTable.description")}
                     </th>
                 </tr>
             </thead>
             <tbody>
             {statusesExtended.map((status) => {
-                return <tr key={status.id} className={`${status.id === animatedClass && "statuses-table-tr--active"} ${status.id === animatedClass && "statuses-table-tr--active"}`} ref={(rowReference) => (status.reference = rowReference as HTMLTableRowElement | null)}>
+                const {id,ref,unit} = status;
+
+                const descriptionKey = `description${i18n.language.toUpperCase()}` as keyof typeof status;
+                const description = status[descriptionKey] as string;
+
+                const nameKey = `name${i18n.language.toUpperCase()}` as keyof typeof status;
+                const name = status[nameKey] as string;
+
+                const descriptionFormatedToHTML = `${description.replaceAll("%",'<span class="perCent-special-font">%</span>')}`
+                return <tr key={id} className={`${id === animatedClass && "statuses-table-tr--active"} ${id === animatedClass && "statuses-table-tr--active"}`} ref={(rowReference) => (status.reference = rowReference as HTMLTableRowElement | null)}>
                 <td className={`statuses-table-th-image`}>
-                    <img src={`./images/tags/${status.id}.png`} alt={""} />
+                    <img src={`${process.env.PUBLIC_URL}/images/tags/${id}.webp`} alt={id} />
                 </td>
-                <td className="statuses-table-th-name">{status.name}</td>
-                <td className="statuses-table-th-description">{status.description}</td>
+                <td className="statuses-table-th-name">{name}</td>
+                <td className="statuses-table-th-description" dangerouslySetInnerHTML={{__html:descriptionFormatedToHTML}}/>
             </tr>
             })}
            </tbody>

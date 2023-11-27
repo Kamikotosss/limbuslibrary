@@ -1,10 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { damageTypes, guardTypes, rarityIdentityTypes, sinnerTypes, sinTypes } from "../../../constants/skillBasedTypes";
 import { rarityEGOType } from "../../../constants/types";
 import { FiltersSection } from "../filters-section/FiltersSection";
 
 export const FiltersList:React.FC = () => {
+    const {t} = useTranslation();
     const location = useLocation().pathname;
     const params = new URLSearchParams(useLocation().search);
     const paramsType = params.get("type");
@@ -38,7 +40,7 @@ export const FiltersList:React.FC = () => {
             imgExtension:".png",
             data:sinTypes,
             visible:true,
-            header:"Грех"
+            header:t("FiltersList.header.sin")
         },
         {
             type:"dmgType" ,
@@ -46,7 +48,7 @@ export const FiltersList:React.FC = () => {
             imgExtension:".png",
             data:damageTypes,
             visible:true,
-            header:"Тип урона"
+            header:t("FiltersList.header.dmgType")
 
         },
         {
@@ -54,7 +56,7 @@ export const FiltersList:React.FC = () => {
             imgsFolder:"guard-type",
             imgExtension:".png",
             data:guardTypes,
-            header:"Тип защиты",
+            header:t("FiltersList.header.guardType"),
             visible:paramsType === "identities"||paramsType === "passives"||location.includes("/teambuilder")||location.includes("/identities")
 
         },
@@ -63,7 +65,7 @@ export const FiltersList:React.FC = () => {
             imgsFolder:"id-rarity",
             imgExtension:".png",
             data:rarityIdentityTypes,
-            header:"Редкость",
+            header:t("FiltersList.header.rarity"),
             visible:paramsType === "passives"||paramsType === "identities"||location.includes("/teambuilder")||location.includes("/identities")
 
         },
@@ -72,7 +74,7 @@ export const FiltersList:React.FC = () => {
             imgsFolder:null,
             imgExtension:"",
             data:egosMap,
-            header:"Уровень угрозы",
+            header:t("FiltersList.header.dangerLvl"),
             visible:paramsType === "ego"||location.includes("/teambuilder")||location.includes("/ego")
 
         },
@@ -81,7 +83,7 @@ export const FiltersList:React.FC = () => {
             imgsFolder:"sinners-icons",
             imgExtension:".webp",
             data:sinnerTypes,
-            header:"Грешник",
+            header:t("FiltersList.header.sinner"),
             visible:true
 
         },

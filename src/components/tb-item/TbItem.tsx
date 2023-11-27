@@ -17,7 +17,7 @@ export const TbItem:React.FC<TbItemInterface> = ({entity}) => {
     const isIdentity = isIdentityFunction(entity);
     const imgUrl = isIdentity ? `identities/${entity.imgUrl}` : `ego/${entity.imgUrl}`;
     const rarity = isIdentity ? entity.rarity.replaceAll("O","Ø") : entity.rarity;
-    const frameColorClass = isIdentity ? `tb-item-frame--${entity.rarity}` : `${entity.egoRes}-sin-color`;
+    const frameColorClass = isIdentity ? `tb-item-frame--${entity.rarity}` : `${entity.egoSin}-sin-color`;
     const {modalTrigger} = useTypedSelector(store => store.tbReducer);
     
     const dispatch = useDispatch();
@@ -59,9 +59,10 @@ export const TbItem:React.FC<TbItemInterface> = ({entity}) => {
     return (
         <div onClick={()=>handleItemClick()} className={"tb-item-container"}>
             <div className={"shadow"}>
-                <img src={`${homePage}/images/${imgUrl}.png`} alt={`${imgUrl}`}/>
+                <img src={`${process.env.PUBLIC_URL}/images/${imgUrl}.webp`} alt={`${imgUrl}`}/>
             </div>
             {svgType()}
+            { !!(+entity.isNew) && <span className={"tb-item-new"} >NEW</span>}
             <div className={"tb-item-rarity"} >{rarity}</div>
             <div className={["tb-item-frame",frameColorClass].join(" ")} ></div>
         </div>

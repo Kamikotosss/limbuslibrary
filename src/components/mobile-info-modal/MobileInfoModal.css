@@ -9,7 +9,7 @@
     justify-content: center;
     flex-direction: row;
     align-items: center;
-    z-index: 200;
+    z-index: 201;
     transition: 0.5s;
     opacity: 0;
     pointer-events: none;

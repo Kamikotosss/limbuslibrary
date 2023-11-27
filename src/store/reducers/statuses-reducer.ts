@@ -1,9 +1,11 @@
 export interface StatusesInterface{
     ref: StatusesInterface | undefined;
     id:string,
-    name:string,
-    description:string,
+    nameRU:string,
+    descriptionRU:string,
     unit:string
+    nameEN:string,
+    descriptionEN:string,
 }
 
 export enum StatusesActionTypes {

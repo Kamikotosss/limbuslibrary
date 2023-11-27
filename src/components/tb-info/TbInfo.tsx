@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { JSX } from "react/jsx-runtime";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { getStatusesEntityList } from "../../tools/getStatusesEntityList";
 import "./TbInfo.css";
 
 type TbInfoInterface = {  
@@ -8,6 +10,7 @@ type TbInfoInterface = {
     type: "tags"|"sins",
 };
 export const TbInfo:React.FC<TbInfoInterface> = ({attribure,type}) => {
+    const {t,i18n} = useTranslation();
     const {slots} = useTypedSelector(store => store.tbReducer);
     const countReq = (entity:any,sin:string) =>{
         let count = 0;
@@ -24,8 +27,8 @@ export const TbInfo:React.FC<TbInfoInterface> = ({attribure,type}) => {
             let count = countReq(slot.identity,sin);
             if (!count) continue;
             result.push(
-                <div key={`${attribure}${slot.identity.name}`}>
-                    <img className="tb-info-img" src={`./images/identities/${slot.identity.imgUrl}.png`}></img> 
+                <div key={`${attribure}${slot.identity.imgUrl}`}>
+                    <img className="tb-info-img" src={`${process.env.PUBLIC_URL}/images/identities/${slot.identity.imgUrl}.webp`}></img> 
                     <span className="tb-info-count">x{count}</span>
                 </div>
             ) 
@@ -43,8 +46,8 @@ export const TbInfo:React.FC<TbInfoInterface> = ({attribure,type}) => {
                 let count = current[sin as keyof typeof current];
                 if(!count) continue;
                 result.push(
-                    <div  key={`${attribure}${current.name}`}>
-                        <img className="tb-info-img" src={`./images/ego/${current.imgUrl}.png`}></img> 
+                    <div  key={`${attribure}${current.imgUrl}`}>
+                        <img className="tb-info-img" src={`${process.env.PUBLIC_URL}/images/ego/${current.imgUrl}.webp`}></img> 
                         <span className="tb-info-count">x{count}</span>
                     </div>
                 )
@@ -56,11 +59,12 @@ export const TbInfo:React.FC<TbInfoInterface> = ({attribure,type}) => {
         let result = [];
         for(let i = 0 ; i < slots.length;i++){
             let slot = slots[i];
-
-            if (slot?.identity?.status?.includes(tag)){
+            if(!slot.identity) continue;
+            const {descriptionCoinEN,descriptionPassive1EN,descriptionPassive2EN} = slot.identity;
+            if (Object.keys(getStatusesEntityList([descriptionCoinEN,descriptionPassive1EN,descriptionPassive2EN])).includes(tag)){
                 result.push(
-                    <div key={`${attribure}${slot.identity.name}`}>
-                        <img className="tb-info-img" src={`./images/identities/${slot.identity.imgUrl}.png`}></img> 
+                    <div key={`${attribure}${slot.identity.imgUrl}`}>
+                        <img className="tb-info-img" src={`${process.env.PUBLIC_URL}/images/identities/${slot.identity.imgUrl}.webp`}></img> 
                         <span className="tb-info-count">x1</span>
                     </div>
                 ) 
@@ -73,17 +77,21 @@ export const TbInfo:React.FC<TbInfoInterface> = ({attribure,type}) => {
         let result: JSX.Element[] = [];
         for(let i = 0 ; i < slots.length;i++){
             let slot = slots[i];
-            Object.keys(slot.ego).forEach((key,index)=>{
-                let current = slot.ego[key];
-                if(current?.status?.includes(tag)){
+            const slotEgoKeys = Object.keys(slot.ego);
+            for(let j = 0; j < slotEgoKeys.length; j++){
+                let current = slot.ego[slotEgoKeys[j]];
+                if(!current) continue;
+                const {descriptionCoinEN,descriptionPassiveEN} = current;
+                if(Object.keys(getStatusesEntityList([descriptionCoinEN,descriptionPassiveEN])).includes(tag)){
                     result.push(
-                        <div key={`${attribure}${current.name}`}>
-                            <img className="tb-info-img" src={`./images/ego/${current.imgUrl}.png`}></img> 
+                        <div key={`${attribure}${current.imgUrl}`}>
+                            <img className="tb-info-img" src={`${process.env.PUBLIC_URL}/images/ego/${current.imgUrl}.webp`}></img> 
                             <span className="tb-info-count">x1</span>
                         </div>
                     )
                 }
-            })
+            }
+           
         }
         return result;
     }
@@ -93,7 +101,7 @@ export const TbInfo:React.FC<TbInfoInterface> = ({attribure,type}) => {
         return(
             <>
                 {genList.length > 0 && <>
-                    <span className="tb-info-header" >Получение энергии</span>
+                    <span className="tb-info-header" >{t("TbInfo.energyGain")}</span>
                     <div className="tb-info-container">
                         {genList}
                     </div>
@@ -101,7 +109,7 @@ export const TbInfo:React.FC<TbInfoInterface> = ({attribure,type}) => {
                 }
                
                 {consumeList.length > 0 && <>
-                    <span className="tb-info-header" >Трата энергии</span>
+                    <span className="tb-info-header" >{t("TbInfo.energyConsumption")}</span>
                     <div className="tb-info-container">
                         {consumeList}
                     </div>
@@ -116,13 +124,13 @@ export const TbInfo:React.FC<TbInfoInterface> = ({attribure,type}) => {
         if(type!=="tags") return;
         return <>
             {tagsIdentity.length > 0 && <>
-                <span className="tb-info-header" >Личности</span>
+                <span className="tb-info-header" >{t("TbInfo.ids")}</span>
                 <div className="tb-info-container">
                     {tagsIdentity}
                 </div> 
             </>}
             {tagsEGO.length > 0 && <>
-                <span className="tb-info-header" >ЭГО</span>
+                <span className="tb-info-header" >{t("TbInfo.ego")}</span>
                 <div className="tb-info-container">
                         {tagsEGO}
                 </div> 

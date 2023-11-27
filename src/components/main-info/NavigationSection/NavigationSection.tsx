@@ -1,43 +1,45 @@
 import { useRef } from "react"
+import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver"
 import { ArrowsRightNavigateSVG } from "../../svg/ArrowsRightNavigate"
 import "./NavigationSection.css"
 export const NavigationSection: React.FC = () => {
+    const { t } =  useTranslation();
     const quickStartLinks = [
         {
-            text:"Для сбора команды",
+            text:t("NavigationSection.teambuilder"),
             to:"/teambuilder"
         },
         {
-            text:"Список с фильтрами всех личностей",
+            text:t("NavigationSection.identities"),
             to:"/identities"
         },
         {
-            text:"Список с фильтрами всех ЭГО",
+            text:t("NavigationSection.ego"),
             to:"/ego"
         },
         {
-            text:"Информация о баффах, дебаффах и прочих статусах ",
+            text:t("NavigationSection.statuses"),
             to:"/statuses"
         },
         {
-            text:"Тирлисты Личностей , ЭГО и Пассивок ",
+            text:t("NavigationSection.tierlist"),
             to:"/tierlist/identities"
         },
     ]
     const NavLink:React.FC<{to:string,text:string}> = ({to,text}) =>{
         const containerRef = useRef(null);
         const {isVisible} = useIntersectionObserver(containerRef,0.1)
-        return <Link to={to} ref={containerRef} className={`nav-link ${isVisible && "nav-link--animated"}`}>
-        <li>
+        return<li> 
+        <Link to={to} ref={containerRef} className={`nav-link ${isVisible && "nav-link--animated"}`}>
             {text}
             <ArrowsRightNavigateSVG />
-        </li>
-    </Link>
+        </Link>
+    </li>
     }
     return <section className="navigation-section">
-        <h2> Быстрая навигация по сайту </h2>
+        <h2> {t("NavigationSection.header")} </h2>
         <ul>
             {quickStartLinks.map((link, index) => {
                 return <NavLink key={index} to={link.to} text={link.text}/>

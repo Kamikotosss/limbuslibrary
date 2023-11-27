@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { EGOInterface } from "../../store/reducers/ego-reducer";
 import { IdentityInterface } from "../../store/reducers/ids-reducer";
@@ -19,11 +20,11 @@ type TRatings = {
 export const TierList:React.FC = () => {
     const ids = useQueryClient().getQueryData("identities") as IdentityInterface[]|null;
     const ego = useQueryClient().getQueryData("ego") as EGOInterface[]|null;
+    const {t,i18n} = useTranslation();
     const filterState = useTypedSelector(state => state.filterReducer);
     const searchState = useTypedSelector(state => state.searchReducer);
-    const location = useLocation();
-    const params = new URLSearchParams(location.search);
-    const type = params.get('type')||"";
+    const params = useParams();
+    const type = params["type"] || "";
     const containerRef = useRef(null);
     const dispatch = useDispatch();
     useEffect(()=>{
@@ -45,13 +46,13 @@ export const TierList:React.FC = () => {
     const tierListName = (tierListParam:string|null) =>{
         switch (tierListParam){
             case "identities":
-                return "Личности";
+                return t("TierList.name.identities");
             case "ego":
-                return "ЭГО";
+                return t("TierList.name.ego");
             case "battlePassives":
-                return "Боевые пассивки";      
+                return t("TierList.name.battlePassives");      
             case "supportPassives":
-                return "Саппорт пассивки";        
+                return t("TierList.name.supportPassives");        
         }
         return "";
     }
@@ -61,7 +62,7 @@ export const TierList:React.FC = () => {
 
     const setupEGO = (ratings:TRatings) =>{
         ego?.forEach((item:EGOInterface,index) =>{
-            if(isFilterMatching(filterState,searchState,item)){
+            if(isFilterMatching(filterState,searchState,item,i18n.language)){
                 ratings[item.egoTier].data.push(<ItemEntity  key={index} entity={item}/>) 
             }
         })
@@ -69,7 +70,7 @@ export const TierList:React.FC = () => {
     }
     const setupIds = (ratings:TRatings) =>{
         ids?.forEach((item:IdentityInterface,index) =>{
-            if(isFilterMatching(filterState,searchState,item)){
+            if(isFilterMatching(filterState,searchState,item,i18n.language)){
                 ratings[item.idTier].data.push(<ItemEntity  key={index} entity={item}/>) 
             }
         })
@@ -77,7 +78,7 @@ export const TierList:React.FC = () => {
     }
     const setupBattlePassives = (ratings:TRatings) =>{
         ids?.forEach((item:IdentityInterface,index) =>{
-            if(isFilterMatching(filterState,searchState,item)){
+            if(isFilterMatching(filterState,searchState,item,i18n.language)){
                 ratings[item.passive1Tier].data.push(<ItemEntity  key={index} entity={item}/>) 
             }
         })
@@ -85,7 +86,7 @@ export const TierList:React.FC = () => {
     }
     const setupSupportPassives = (ratings:TRatings) =>{
         ids?.forEach((item:IdentityInterface,index) =>{
-            if(isFilterMatching(filterState,searchState,item)){
+            if(isFilterMatching(filterState,searchState,item,i18n.language)){
                 ratings[item.passive2Tier].data.push(<ItemEntity  key={index} entity={item}/>) 
             }
         })
@@ -95,27 +96,27 @@ export const TierList:React.FC = () => {
         const ratings:TRatings = {
             "SSS":{
                 data:[],
-                description: "Эти Личности/ЭГО не имеют равных и способны одолевать любой игровой контент в одиночку."
+                description: t("TierList.description.SSS")
             },
             "SS":{
                 data:[],
-                description: "Очень мощные Личности/ЭГО, которым немного не хватает для того, чтобы войти в категорию SSS."
+                description: t("TierList.description.SS")
             },
             "S":{
                 data:[],
-                description: "Сильные Личности/ЭГО, которые успешно справляются с разнообразным контентом, но могут быть заменены еще более мощными представителями из S или SS тира."
+                description: t("TierList.description.S")
             },
             "A":{
                 data:[],
-                description: "Обычные Личности/ЭГО, обладающие какими-то сильными сторонами, но также имеющие недостатки."
+                description:t("TierList.description.A")
             },
             "B":{
                 data:[],
-                description: "Сравнительно слабые Личности/ЭГО, которых стоит выбирать только в случае крайней необходимости."
+                description: t("TierList.description.B")
             },
             "C":{
                 data:[],
-                description: "Неэффективные Личности/ЭГО, лучше всего избегать их выбора, так как они не способны успешно выполнять игровые задачи."
+                description: t("TierList.description.C")
             },
         };
         if(params === "battlePassives") return setupBattlePassives(ratings);
@@ -148,7 +149,7 @@ export const TierList:React.FC = () => {
                 return (
                     <section key={index} className={["tier-list" , tierListClass()].join(" ")}>
                         <h2 className="tier-list-name">{tierListName(tierListParam) + ` (${getAllDataCount(ratings)})`}</h2>
-                        {!getAllDataCount(ratings) && <p className="tier-list-text-empty">Список пуст, но вы можете это исправить, очистив какие-то из фильтров </p>}
+                        {!getAllDataCount(ratings) && <p className="tier-list-text-empty">{t("Filters.empty")}  </p>}
                             {Object.entries(ratings).map((entry)=>{
                                 const [ratingKey , ratingValue] = entry;
                                 const {data,description} = ratingValue;

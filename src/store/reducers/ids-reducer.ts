@@ -2,11 +2,18 @@ import { dmgType, guardType, sinType } from "../../constants/types";
 
 
 export interface IdentityInterface{
-    imgUrl:number,
+    imgUrl:string,
     sinner:string,
-    name:string,
+
+    nameRU:string,
+    nameEN:string,
+
     rarity:string,
     season:number,
+    hp:number,
+    hpStun:number[],
+    speed:string,
+    defence:number,
     sin1:sinType,
     sin2:sinType,
     sin3:sinType,
@@ -15,19 +22,46 @@ export interface IdentityInterface{
     dmgType2:dmgType,
     dmgType3:dmgType,
     guardType:guardType,
+    basicCoin:number[],
+    growthPerCoin:number[],
+    maxCoinValue:number[],
+    damage:number[],
+
+    nameSkillRU:string[],
+    nameSkillEN:string[],
+
+    countCoin:number[],
+    weightCoin:number[],
+
+    descriptionCoinEN:string,
+    descriptionCoinRU:string,
+
     idTier:string,
     passive1Tier:string,
     passive2Tier:string,
+
+    namePassiveRU:string[],
+    namePassiveEN:string[],
+
     sinPassive1:string,
     countPassive1:number,
     sinPassive2:string,
     countPassive2:number,
+    passive1Condition:string,
+    passive2Condition:string,
+
+    descriptionPassive1RU:string,
+    descriptionPassive2RU:string,
+    descriptionPassive1EN:string,
+    descriptionPassive2EN:string,
+
     slash:string,
     pierce:string,
     blunt:string,
-    status:string|null,
-    releaseDate:number
-
+    releaseDate:number,
+    minPossibleDmg:string[],
+    maxPossibleDmg:string[],
+    isNew:string
 }
 
 export enum IdsActionTypes {

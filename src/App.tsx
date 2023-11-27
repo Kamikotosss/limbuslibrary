@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import { AppRouter } from './components/AppRouter';
 import { store } from './store/store';
 import { Provider } from 'react-redux';
-import {  HashRouter as Router } from 'react-router-dom';
+import { BrowserRouter  } from 'react-router-dom';
 import { QueryClient , QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import './i18n';
+import { HelmetProvider } from 'react-helmet-async';
 const queryClient = new QueryClient();
 function App() {
- 
   return (
-    <QueryClientProvider client={queryClient} >
-      <Provider store={store}>
-        <Router>
-          <AppRouter/>
-        </Router>
-      </Provider>
-      {/* <ReactQueryDevtools initialIsOpen={true}/> */}
-    </QueryClientProvider>
+    // <Suspense fallback="...loading">
+    <HelmetProvider>
+        <QueryClientProvider client={queryClient} >
+        <Provider store={store}>
+          <BrowserRouter basename={`/limbuslibrary-test`}>
+                <AppRouter/>
+          </BrowserRouter>
+        </Provider>
+      </QueryClientProvider>
+    </HelmetProvider>
+    // </Suspense>
   );
 }
 

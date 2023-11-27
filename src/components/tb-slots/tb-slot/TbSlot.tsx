@@ -6,6 +6,7 @@ import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { EGOInterface } from "../../../store/reducers/ego-reducer";
 import { SlotInterface, tbResetHoverAction, tbSetHoverAction } from "../../../store/reducers/tb-reducer";
 import {tbResetSlotAction, tbTriggerModalAction } from "../../../store/reducers/tb-reducer";
+import { getStatusesEntityList } from "../../../tools/getStatusesEntityList";
 import { IdentitySVG } from "../../svg/IdentitySVG";
 
 export const TbSlot:React.FC<{slot:SlotInterface,index:number}> = ({slot,index}) => {
@@ -69,15 +70,7 @@ export const TbSlot:React.FC<{slot:SlotInterface,index:number}> = ({slot,index})
     const isHoveringEGO = () => {
         return isHoveringSlotWAW || isHoveringSlotTETH || isHoveringSlotHE || isHoveringSlotALEPH || isHoveringSlotZAYIN;
     }
-    // const isAnyEGO = () => {
-    //     return ZAYIN||ALEPH||HE||TETH||WAW;
-    // }
-    // const getSinnerByEGO = () => {
-    //     for(const key in ego){
-    //         let current = ego[key];
-    //         if(current) return current.sinner;
-    //     }
-    // }
+
     const tbEGOHoverMatch = (ego:EGOInterface|null) =>{
         if(!tbHoverState) return false;
         if(!ego)return false;
@@ -85,7 +78,8 @@ export const TbSlot:React.FC<{slot:SlotInterface,index:number}> = ({slot,index})
             let a = ego[tbHoverState.trigger as keyof typeof ego];
             if ( a && a > 0) return true;
         }else if (tbHoverState.type === "tag") {
-            if (ego.status?.includes(tbHoverState.trigger)) return true;
+            const {descriptionCoinEN,descriptionPassiveEN} = ego;
+            if (Object.keys(getStatusesEntityList([descriptionCoinEN,descriptionPassiveEN])).includes(tbHoverState.trigger)) return true;
         }
         return false;
     }
@@ -96,7 +90,8 @@ export const TbSlot:React.FC<{slot:SlotInterface,index:number}> = ({slot,index})
             const {sin1 ,sin2 ,sin3} =slot.identity;
             if ([sin1 ,sin2 ,sin3].includes(tbHoverState.trigger as sinType)) return true;
         }else if (tbHoverState.type === "tag") {
-            if (slot.identity.status?.includes(tbHoverState.trigger)) return true;
+            const {descriptionCoinEN,descriptionPassive1EN,descriptionPassive2EN} = slot.identity;
+            if (Object.keys(getStatusesEntityList([descriptionCoinEN,descriptionPassive1EN,descriptionPassive2EN])).includes(tbHoverState.trigger)) return true;
         }
         return false;
     }
@@ -131,7 +126,7 @@ export const TbSlot:React.FC<{slot:SlotInterface,index:number}> = ({slot,index})
         !slot.identity ? "tb-slots-empty" : ""].join(" ")}>
 
             <div className={[(!identity) ? "": "shadow" ].join(" ") }>
-                { (!identity) ? <IdentitySVG/>:<img src={`./images/identities/${identity.imgUrl}.png`} alt={`identities/${identity.imgUrl}`}/>}
+                { (!identity) ? <IdentitySVG/>:<img src={`${process.env.PUBLIC_URL}/images/identities/${identity.imgUrl}.webp`} alt={`identities/${identity.imgUrl}`}/>}
             </div>
 
         </div>
@@ -147,9 +142,9 @@ export const TbSlot:React.FC<{slot:SlotInterface,index:number}> = ({slot,index})
                         ? <span >{glyph}</span>
                         : <>
                             <div className={"shadow"}>
-                                <img src={`./images/ego/${ego.imgUrl}.png`} alt={`ego/${ego.imgUrl}`}/>
+                                <img src={`${process.env.PUBLIC_URL}/images/ego/${ego.imgUrl}.webp`} alt={`ego/${ego.imgUrl}`}/>
                             </div>
-                            <div className={["tb-ego-frame",`${ego.egoRes}-sin-color`].join(" ")}/>
+                            <div className={["tb-ego-frame",`${ego.egoSin}-sin-color`].join(" ")}/>
                         </>
                     }
                     

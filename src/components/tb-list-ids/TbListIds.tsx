@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { IdentityInterface } from "../../store/reducers/ids-reducer";
@@ -7,6 +8,7 @@ import { TbItem } from "../tb-item/TbItem";
 
 export const TbListIds: React.FC = () => {
     const ids = useQueryClient().getQueryData("identities") as IdentityInterface[]|null;
+    const {t,i18n} = useTranslation();
     const {slots,modalTrigger} = useTypedSelector(store => store.tbReducer);
     const filterState = useTypedSelector(store => store.filterReducer);
     const searchState = useTypedSelector(store => store.searchReducer);
@@ -38,22 +40,27 @@ export const TbListIds: React.FC = () => {
         }
         return true; 
     }
-    let count = 0;
-    const jsxElements = ids?.map((entity) => {
-        if (modalTrigger !== null && !isSameSinner(entity) ) return null;
-        if (!isFilterMatching(filterState,searchState,entity)) return null;
-        if (!isAvailibleSinner(entity)) return null;
-        count++;
-        return <TbItem key={entity.imgUrl} entity={entity} />
-    }) || [];
+    const jsxElementsNew:React.ReactNode[] = []
+    const jsxElements = ids?.reduceRight((acc:React.ReactNode[] , entity) => {
+        if (modalTrigger !== null && !isSameSinner(entity) ) return acc;
+        if (!isFilterMatching(filterState,searchState,entity,i18n.language)) return acc;
+        if (!isAvailibleSinner(entity)) return acc;
+        if (!!(+entity.isNew)){
+            jsxElementsNew.push(<TbItem key={entity.imgUrl} entity={entity} />)
+            return acc;
+        } 
+        acc.push(<TbItem key={entity.imgUrl} entity={entity} />)
+        return acc;
+    },[]);
     return <>
-    <span className={"tb-list-header"} > {`Список Личностей (${count})`}  </span>
+    <span className={"tb-list-header"} > {`${t("TbListIds.header")} (${(jsxElements?.length || 0) + jsxElementsNew.length})`}  </span>
     {
-        count 
+        !!((jsxElements?.length || 0) + jsxElementsNew.length )
         ? <div  className={"tb-list-content"} >
+             {jsxElementsNew}
             {jsxElements}
         </div>
-        : <p>Нет доступных Личностей. Попробуйте отключить некоторые из фильтров.</p> 
+        : <p>{t("TbListIds.empty")}</p> 
     }
         
     </>;

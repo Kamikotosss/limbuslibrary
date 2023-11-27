@@ -1,18 +1,12 @@
 .left-menu {
   width: 220px;
-  height: 100%;
-  min-height: 100vh;
+ height: 100vh;
   background-color: #131319;
   position: fixed;
-  z-index: 111;
   transition: 0.4s;
   user-select: none;
-}
-.burger-menu--wrapper{
-position: absolute;
-right: 0px;
-top: 36px;
-display: flex;
+  overflow-Y: scroll;
+  z-index: 1;
 }
 
 .left-menu ul {
@@ -25,7 +19,7 @@ display: flex;
 
 .left-menu li {
   width: 188px;
-  height: 44px;
+  min-height: 44px;
 }
 
 .left-menu li:first-of-type{
@@ -90,96 +84,7 @@ margin-bottom: 27.2px;
   opacity: 1;
 }
 
-.burger-menu {
-  position: relative;
-  color: white;
-  font-size: 32px;
-  z-index: 2;
-  width: 32px;
-  height: 16px;
-  line-height: 0;
-  transition: 0.8s;
-  left: unset;
-}
 
-.burger-menu div{
-  height: 3.2px;
-  background-color: #fff;
-  transition: 0.4s;
-}
-
-.burger-menu::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 3.2px;
-  background-color: #fff;
-  transition: 0.4s;
-  right: 0;
-}
-
-.burger-menu::before {
-  content: "";
-  position: absolute;
-  bottom: 0px;
-  width: 60%;
-  height: 3.2px;
-  color: white;
-  background-color: #fff;
-  transition: 0.4s;
-  right: 0;
-}
-
-.burger-menu .line2{
-  position: absolute;
-  top:0;
-  opacity: 1;
-  transition: 0.4s;
-  width: 100%;
-  right: 0;
-}
-
-.burger-menu .line3{
-  position: absolute;
-  bottom:0;
-  opacity: 1;
-  transition: 0.4s;
-  width: 60%;
-  right: 0;
-}
-
-.burger-menu .line1{
-  transition: 0.4s;
-  width: 60%;
-  right: 0;
-  top: 6.4px;
-  position: absolute;
-}
-
-.burger-menu:hover .line1{
-  opacity: 0;
-}
-
-.burger-menu:hover .line2{
-  transform-origin: right;
-  transform: translate(-11.2px,-2.4px)  rotate(-30deg); width: 60%;
-}
-
-.burger-menu:hover .line3{
-  transform-origin: right;
-  transform: translate(-11.2px,2.4px)  rotate(30deg); width: 60%;
-}
-
-.burger-menu:hover::after{
-  transform-origin: right;
-  transform: translate(0,-2.4px)  rotate(-30deg); width: 60%;
-}
-
-.burger-menu:hover::before{
-  transform-origin: right;
-  transform: translate(0,2.4px)  rotate(30deg); width: 60% ;
-}
 
 .left-menu--minimized .line3{
   right: unset;
@@ -194,40 +99,6 @@ margin-bottom: 27.2px;
   left: 0;
 }
 
-.left-menu--minimized .burger-menu::before{
-  right: unset;
-  left:0;
-}
-
-.left-menu--minimized .burger-menu::after{
-  right: unset;
-  left:0;
-}
-
-.left-menu--minimized .burger-menu:hover .line2{
-  transform-origin: initial;
-  transform: translate(17.6px,2.4px)  rotate(30deg); width: 60%;
-}
-
-.left-menu--minimized .burger-menu:hover .line3{
-  transform-origin: initial;
-  transform: translate(17.6px,-2.4px)  rotate(-30deg); width: 60%;
-}
-
-.left-menu--minimized .burger-menu:hover::after{
-  transform-origin: initial;
-  transform: translate(6.4px,2.4px)  rotate(30deg); width: 60%;
-}
-
-.left-menu--minimized .burger-menu:hover::before{
-  transform-origin: initial;
-  transform: translate(6.4px,-2.4px)  rotate(-30deg); width: 60% ;
-}
-
-.left-menu--minimized  .burger-menu--wrapper {
-  right: 16px;
-  top: 36px;
-}
 
 .left-menu--minimized  li:first-of-type {
   margin-bottom: 12px; 
@@ -254,16 +125,14 @@ margin-bottom: 27.2px;
 
 
 @media (max-width: 1000px) {
-  .burger-menu{
-    display: none;
-  }
   .left-menu{
     width: 100%;
     margin-top: 70px;
-    min-height: unset;
     transition: 0s;
     transform: translateX(-100%);
     left: 0px;
+    min-height: 100vh;
+  z-index: 111;
 
   }
   .left-menu--minimized{

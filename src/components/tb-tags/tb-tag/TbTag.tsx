@@ -5,6 +5,7 @@ import useHover from "../../../hooks/useHover";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { setMobileModalTrigger } from "../../../store/reducers/mobile-modal-reducer";
 import {tbResetHoverAction, tbSetHoverAction } from "../../../store/reducers/tb-reducer";
+import { getStatusesEntityList } from "../../../tools/getStatusesEntityList";
 import { TbInfo } from "../../tb-info/TbInfo";
 interface TbSinInterface {
     tag:string,
@@ -19,12 +20,23 @@ export const TbTag:React.FC <TbSinInterface> = ({tag,count}) =>{
         if(!tbHoverState)return false;
         if(tbHoverState.type === "slot"){
             const {ego,identity} = tbHoverState.trigger;
-            if(identity?.status?.includes(tag)) return true;
-            for(const key in ego) if(ego[key]?.status?.includes(tag)) return true;
+            if(identity){
+                const {descriptionCoinEN,descriptionPassive1EN,descriptionPassive2EN} = identity;
+                if(Object.keys(getStatusesEntityList([descriptionCoinEN,descriptionPassive1EN,descriptionPassive2EN])).includes(tag)) return true;
+            }
+            for(const key in ego){
+                const currEGO = ego[key]
+                if(currEGO){
+                    const {descriptionCoinEN,descriptionPassiveEN} = currEGO;
+                    if(Object.keys(getStatusesEntityList([descriptionCoinEN,descriptionPassiveEN])).includes(tag)) return true;
+                }
+            } 
         }else if (tbHoverState.type === "slot-identity"){
-            return tbHoverState.trigger.status?.includes(tag);
+            const {descriptionCoinEN,descriptionPassive1EN,descriptionPassive2EN}  = tbHoverState.trigger;
+            return Object.keys(getStatusesEntityList([descriptionCoinEN,descriptionPassive1EN,descriptionPassive2EN])).includes(tag);
         }else if (tbHoverState.type === "slot-ego"){
-            return tbHoverState.trigger.status?.includes(tag);
+            const {descriptionCoinEN,descriptionPassiveEN}  = tbHoverState.trigger;
+            return Object.keys(getStatusesEntityList([descriptionCoinEN,descriptionPassiveEN])).includes(tag);
         }
         return false;
     }
@@ -45,7 +57,7 @@ export const TbTag:React.FC <TbSinInterface> = ({tag,count}) =>{
     return(
     <div ref={refItem} onClick={()=>handleClick()} className={["tb-tags-tag" ,slotHoverMatch() ? "tb-tags-tag--active" : ""].join(" ")} key={tag}>
         { isHovering && window.innerWidth > mobileLayoutFrom && HoverComponent}
-        <img src={`./images/tags/${tag}.png`} className="tb-sins-img" alt={tag}></img>
+        <img src={`${process.env.PUBLIC_URL}/images/tags/${tag}.webp`} className="tb-sins-img" alt={tag}></img>
         <span>x{count}</span>
     </div>
     )

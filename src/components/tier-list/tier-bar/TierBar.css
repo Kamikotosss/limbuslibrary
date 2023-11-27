@@ -141,6 +141,11 @@
         grid-template-columns: repeat(auto-fill, 106.568px);
     }
 }
+@media (max-width: 380px) {
+    .tier-bar-items {
+        grid-template-columns: repeat(auto-fill, 88.60776px);
+    }
+}
 @media (max-width: 455px) {
     .tier-bar-container {
         padding-left: 30px;

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useTransition } from "react";
 import { TierList } from "../components/tier-list/TierList";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { TierListNav } from "../components/tier-list-nav/TierListNav";
 import { Filters } from "../components/filters/Filters";
 import { CommonPageLayout } from "./CommonPageLayout";
 import { LoadingPageWrapper } from "./LoadingPageWrapper";
+import { useTranslation } from "react-i18next";
+import { H1Component } from "../components/h1-component/H1Component";
+import { SEOHelmet } from "./SEOHelmet";
 
 
 const getQuaryByParam = (param:string) => {
@@ -14,15 +17,20 @@ const getQuaryByParam = (param:string) => {
 }
 export const TierListPage:React.FC = () => {
     const location = useLocation();
-    const params = new URLSearchParams(location.search);
-    const type = params.get('type')||"redirect";
+    const {i18n} = useTranslation();
+    const params = useParams();
+    const type = params['type'] || "redirect";
     const navigate = useNavigate();
-    if(type === "redirect")  navigate("/");
+    useEffect(()=>{
+        if( !(["identities","ego","passives"].includes(type)))  navigate(`/${i18n.language}/tierlist/identities`);
+    },[])
     const queryKeys = getQuaryByParam(type);
-  
+    const {t} = useTranslation();
     return <CommonPageLayout>
             <LoadingPageWrapper queryKeys={queryKeys}>
-                <h1 style={{width:"90%" ,color:"white"}}>Тир Лист</h1>
+                <SEOHelmet titleText={t("TierListPage.title") + " | Great Limbus Library"} descriptionText=""/>
+                <H1Component header={t("TierListPage.header")}/>
+                <h2 style={{width:"90%" ,color:"white",marginTop:"-25px",marginBottom:"25px",fontWeight:"500"}}>{t("TierListPage.description")}</h2>
                 <TierListNav/>
                 <Filters/>
                 <TierList/>

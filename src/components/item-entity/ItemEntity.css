@@ -4,16 +4,31 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    opacity: 0.75;
+    transform: translateX(-16px);
+    opacity: 0;
     cursor: pointer;
     border-radius: 3.2px 3.2px 0px 0px;
     position: relative;
-    animation: slideAnimationItem 0.5s ease;
     z-index: 5;
-    transition: opacity 0.5s linear, transform 0.5s linear;
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
+    transition: 0.5s;
 }
+.item-entity-container--animated {
+    transform: translateX(0);
+    opacity: 0.8;
+}
+.item-entity-container:hover {
+    opacity: 1;
+    z-index: 6;
+    -webkit-transform: scale(1.1) translate3d( 0, 0, 0) perspective(1px)  !important;
+     -moz-transform: scale(1.1) translate3d( 0, 0, 0) perspective(1px)  !important;
+       -o-transform: scale(1.1) translate3d( 0, 0, 0) perspective(1px)  !important;
+      -ms-transform: scale(1.1) translate3d( 0, 0, 0) perspective(1px)  !important;
+          transform: scale(1.1) translate3d( 0, 0, 0) perspective(1px)  !important;
+}
+
+
 .item-entity-info-container--right{
     left: -10px;
     top: 50%;
@@ -26,25 +41,7 @@
     top: 50%;
     transform: translate(100%, -50%);
 }
-.item-entity-container:hover {
-    opacity: 1;
-    z-index: 6;
-    -webkit-transform: scale(1.1) translate3d( 0, 0, 0) perspective(1px);
-     -moz-transform: scale(1.1) translate3d( 0, 0, 0) perspective(1px);
-       -o-transform: scale(1.1) translate3d( 0, 0, 0) perspective(1px);
-      -ms-transform: scale(1.1) translate3d( 0, 0, 0) perspective(1px);
-          transform: scale(1.1) translate3d( 0, 0, 0) perspective(1px);
-}
-@keyframes slideAnimationItem {
-    0% {
-        transform: translateX(-16px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 0.8;
-    }
-}
+
 
 .item-entity-container .shadow img {
     width:  100%;
@@ -64,7 +61,17 @@
     align-items: center;
     border-radius: 6.4px 6.4px;
 }
-
+.item-entity-new{
+    position: absolute;
+    right: 3.84px;
+    top: 3.84px;
+    width: fit-content;
+    padding: 2px 6px;
+    box-sizing: border-box;
+    background-color: rgb(255, 57, 57);
+    color: white;
+    border-radius: 4px;
+}
 
 
 .item-entity-rarity {
@@ -155,4 +162,28 @@
         margin: 2.9576px 0px 0px 2.9576px; 
         font-size: 12.32px;
     }
+    .item-entity-new{
+        padding: 1px 4px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 380px) {
+    .item-entity-container {
+        width: 88.60776px;
+        height: 106.60208px; 
+    }
+    
+    .item-entity-name {
+        font-size: 10.2324px; 
+        padding: 0px 6.12456px 0px 6.12456px; 
+        margin-bottom: 4.8464px; 
+    }
+    
+    .item-entity-rarity {
+        padding: 1.02844px 3.351168px 1.02844px; 
+        margin: 2.514672px 0px 0px 2.514672px; 
+        font-size: 10.2324px; 
+    }
+   
+    
 }

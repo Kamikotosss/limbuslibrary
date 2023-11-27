@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { filterResetAllAction } from "../../store/reducers/filter-reducer";
@@ -13,19 +14,19 @@ import "./Filters.css";
 export const Filters:React.FC = () => {
     const location =useLocation().pathname;
     const dispatch = useDispatch();
+    const {t} = useTranslation();
     return (
         <section className={"filters"}>
-            <header className="filters-main-header">Фильтры</header>
+            <header className="filters-main-header">{t("Filters.header")} </header>
                 <FiltersList/>
                 <button onClick={()=>{setMobileModalTrigger(dispatch,
                     <div className="filters-modal-wrapper">
                     <FiltersList/>
                     <FiltersSection2/>
-                    </div>)}} className="show-filters btn-filters"><FilterSVG/> Показать фильтры</button>
-                <button onClick={()=>filterResetAllAction(dispatch)} className="clear-filters btn-filters"><ClearFilterSVG/> Очистить фильтры</button>
+                    </div>)}} className="show-filters btn-filters"><FilterSVG/>{t("Filters.showFilters")} </button>
+                <button onClick={()=>filterResetAllAction(dispatch)} className="clear-filters btn-filters"><ClearFilterSVG/>{t("Filters.clearFilters")} </button>
                 {!location.includes("/teambuilder") && <Search/>}
                 <FiltersSection2/>
-                
         </section>
     )
 }

@@ -13,26 +13,9 @@
     font-size: 24px;
     font-weight: 400;
 }
-.list-ego-content {
-    width:100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 138.4px);
-    row-gap: 16px;
-    column-gap: 9.6px;
-    justify-content: space-between;
-}
-@media (max-width: 1039.5px) {
-    .list-ego-content{
-        grid-template-columns: repeat(auto-fill, 124.56px);
-    }
-}
-@media (max-width: 810px) {
-    .list-ego-content{
-        grid-template-columns: repeat(auto-fill, 106.568px);
-    }
-}
-@media (max-width: 378px) {
-    .list-ego-content{
-        justify-content: space-evenly;
-    }
+.list-ego-span{
+    font-size: 30px;
+    margin-top:0 ;
+    margin-bottom: 20px;
+    font-weight: 600;
 }

@@ -6,18 +6,23 @@ interface ItemEGOInfoInterface{
     entity:EGOInterface;
 }
 export const ItemEGOInfo:React.FC<ItemEGOInfoInterface> = ({entity}) => {
-    const {egoTier,sanity,dmgType,egoRes} = entity;
+    const {egoTier,sanity,dmgType,egoSin} = entity;
     return (
         <div  className={`item-entity-info-container`} >
              <div className={"item-ego-info-skills"}>
                 <div className="item-ego-info-sin">
-                    <img src={`./images/sanity.png`} alt="sanity"/>
-                    {sanity}
+                    <img src={`${process.env.PUBLIC_URL}/images/sanity.png`} alt="sanity"/>
+                    {sanity[0]}
                 </div>
-                <div  className="item-ego-info-sin">
-                    <img  src={`./images/dmg-type/${dmgType}.png`} alt={dmgType}/>
-                    <div className={["item-ego-info-line", `${egoRes}-sin-color`].join(" ")}/>
-                </div>
+                {
+                    dmgType.map((dt,index) =>{
+                        return  <div  key={index} className="item-ego-info-sin">
+                        <img src={`${process.env.PUBLIC_URL}/images/dmg-type/${dt}.png`} alt={dt}/>
+                        <div className={`item-ego-info-line ${egoSin}-sin-color`}/>
+                    </div>
+                    })
+                }
+               
            </div>
 
             <div className={"item-ego-info-skills"}>
@@ -25,7 +30,7 @@ export const ItemEGOInfo:React.FC<ItemEGOInfoInterface> = ({entity}) => {
                     if(!entity[sin]) return null
                     return (
                         <div key={`${sin}`} className="item-ego-info-sin">
-                            <img src={`./images/sins/${sin}.png`} alt={sin}/>
+                            <img src={`${process.env.PUBLIC_URL}/images/sins/${sin}.png`} alt={sin}/>
                             {"x"+entity[sin]}
                             <div className={["item-ego-info-line", `${sin}-sin-color`].join(" ")}/>
                         </div>
