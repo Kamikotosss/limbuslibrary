@@ -1,5 +1,7 @@
+## The project not only involved the technical implementation of presenting data from Excel but also encompassed a wide range of functionalities to ensure user convenience and high performance across various devices.
 This site is available on [gll-fun.com](https://gll-fun.com)
-Example of creation a description for skills and passives
+
+## Example of creation a description for skills and passives
 ``` javascript
 const conditionsMap = {
   "[onhit]": "[On Hit] ",
