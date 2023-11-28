@@ -1,3 +1,5 @@
+This site is available on [gll-fun.com](https://gll-fun.com)
+Example of creation a description for skills and passives
 ``` javascript
 const conditionsMap = {
   "[onhit]": "[On Hit] ",
