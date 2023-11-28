@@ -1,46 +1,142 @@
-# Getting Started with Create React App
+``` javascript
+const conditionsMap = {
+  "[onhit]": "[On Hit] ",
+  "[clashwin]": "[On Clash Victory] ",
+  "[combatstart]": "[Combat Start] ",
+  "[clashlose]": "[On Clash Defeat] ",
+  "[onuse]": "[On Use] ",
+  "[onkill]": "[On Kill] ",
+  "[onevade]": "[On Evade] ",
+  "[headshit]": "[Heads Coin Flip] ",
+  "[hitafterclashwin]": "[Hit After Clash Victory] ",
+  "[afterattack]": "[After Attack] ",
+  "[beforeattack]": "[Before Attack] ",
+  "[reuse-headshit]": "[Reuse - Heads Coin Flip] ",
+  "[tailshit]": "[Tails Coin Flip] ",
+  "[oncrit]": "[On Critical Hit] ",
+  "[indiscriminate]": "[Indiscriminate] ",
+  "[headsattackend]": "[Attack Ends with Heads Coin Flip] ",
+  "[tailsattackend]": "[Attack Ends without Coin Flip] ",
+  "[failedkill]": "[Failed to Kill] ",
+  "[critattackend]": "[Attack Ends with Critical Hit] ",
+};
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+const coinsConditionsMap:{
+  [key:string]:string;
+} = {
+  "fc" : "Final Coin",
+  "bc" : "Base Coin",
+  "cg" : "Coin Growth",
+  "cp" : "Clash Power",
+}
+const coinsConditionsFunc = (value:string,result:React.ReactNode[],tracked:{coinIndex:number,index:number}) =>{
+  let keyVal = "";
+  let numberVal = "";
+  for (let i = 0 ; i < value.length; i++ ){ 
+      const currChar = value[i];
+      if(isNaN(+currChar) && !(["-","+"].includes(currChar)))  keyVal += currChar;
+      else if (currChar !== " ") numberVal += currChar;
+  }
+  keyVal = keyVal.toLowerCase();
+  return <React.Fragment key={result.length}>
+  <span className={`coins-coditions coins-coditions--${keyVal}`}>
+      {numberVal} 
+      {t(`SkillCoinDescription.${keyVal}`)}
+  </span>
+  </React.Fragment>
+}
+const coinFunc = (value:string,result:React.ReactNode[],tracked:{coinIndex:number,index:number}) =>{
+  if(isNaN(+value)) return value;
+  return <React.Fragment key={result.length}>
+  {!!result.length && <br/> }
+  <img className="coin" src={`${process.env.PUBLIC_URL}/images/general/coin${value}.png`} alt="coinN"/>
+  </React.Fragment>
+}
+const conditionFunc = (value:string,result:React.ReactNode[],tracked:{coinIndex:number,index:number}) =>{
+  const valueAsKey = value.toLowerCase().replace(/\s/g, '');
 
-## Available Scripts
+  const isCloseToCoin = tracked.coinIndex + 1 === tracked.index;
 
-In the project directory, you can run:
+  if( valueAsKey in coditionsMap) 
+  return <React.Fragment key={result.length}>
+  {(!isCloseToCoin && !!result.length) && <br/>}
+  <span className={`condition condition--${valueAsKey.substr(1,valueAsKey.length-2)}`}>
+      { t(`SkillCoinDescription.${valueAsKey}`)}
+  </span>
+  </React.Fragment>
+  return "";
+}
+const tagFunc = (value:string,result:React.ReactNode[],tracked:{coinIndex:number,index:number}) =>{
+  const status = statuses.find( s => s.id === value);
+  if(!status) return value;
+  
+  const descriptionKey = `description${i18n.language.toUpperCase()}` as keyof typeof status;
+  const description = status[descriptionKey] as string;
 
-### `npm start`
+  const nameKey = `name${i18n.language.toUpperCase()}` as keyof typeof status;
+  const name = status[nameKey] as string;
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  const imgHTML = <img className="status" src={`${process.env.PUBLIC_URL}/images/tags/${value}.webp`} alt={value} />;
+  const mobileModalHTML = <TooltipMobile image={imgHTML} header={name} text={description}/>
+  return <React.Fragment key={result.length}>
+  {imgHTML}
+  <span onClick={()=>{setMobileModalTrigger(
+      dispatch,
+      mobileModalHTML
+  );}} className={`status-name status-name--${value} tooltip-container tooltip--status`}>
+      {name}
+      <span className="entityFullInfo-tooltip tooltip-container--status">
+          {t("SkillCoinDescription.clickToSeeDescription")}
+      </span>
+  </span>
+  </React.Fragment> 
+}
+const weightFunc = (value:string,result:React.ReactNode[],tracked:{coinIndex:number,index:number}) =>{
+  const [growth , maxCount] = value.split(",");
+  const maxCountToNumber = Number(maxCount);
+  return <span className="description-weight">
+      {Math.sign(+growth) === -1 ? growth : `+${growth}`} {t("SkillCoinDescription.weigth")} 
+      {!isNaN(maxCountToNumber) ? ` (Mакс. ${maxCountToNumber})` : ""}
+  </span>
+}
+const specialsMap = {
+  "@":coinFunc,
+  "$":conditionFunc,
+  "#":tagFunc,
+  "&":coinsConditionsFunc,
+  "?":weightFunc,
+}
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+const  createDescriptionDangerousHTML = (str:string) =>{
+  if(!str) return "";
+  let result:React.ReactNode[] = [];
+  let tracked = {value:"",index:-1,coinIndex:0};
+  for(let i = 0 ; i < str.length;i++){
+      const currentChar = str[i];
+      if(currentChar === "@") tracked.coinIndex = i;
+      if(currentChar in specialsMap){
+          if(currentChar === tracked.value){
+              const variableVal = str.substring(tracked.index + 1, i);
+              const func = specialsMap[currentChar as keyof typeof specialsMap];
+              const textVal = func(variableVal,result,tracked);
+              if(textVal !== "") result.push(textVal);
+              tracked = {...tracked, value:"",index:i};
+          }else{
+              const textVal = str.substring(tracked.index + 1, i)
+              if(tracked.value !=="@" && textVal !== ""){
+                  const textValSpecial = textVal.replaceAll("%",`<span class="perCent-special-font">%</span>`);
+                  result.push(<span key={result.length} dangerouslySetInnerHTML={{__html:textValSpecial}}/>);
+              }
+              tracked = {...tracked, value:currentChar,index:i};
+          }
+      }
+  }
+  const textVal = str.substring(tracked.index + 1, str.length);
+  if(textVal !== ""){
+      const textValSpecial = textVal.replaceAll("%",`<span class="perCent-special-font">%</span>`);
+      result.push(<span key={result.length} dangerouslySetInnerHTML={{__html:textValSpecial}}/>);
+  }
+  return result;
+}
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
