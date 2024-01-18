@@ -278,7 +278,11 @@
         "bc" : " Base Power",
         "cg" : " Coin Power",
         "cp" : " Clash Power",
-        "weigth": " Attack Weight"
+        "weigth": " Attack Weight",
+        "[check]": "Check ",
+        "[checkpassed]": "Check Passed ",
+        "[checkfailed]": "Check Failed ",
+        "[skillend]":"[Skill End] "
     } ,
     "sinners":{
         "new":"NEW",
