@@ -295,5 +295,9 @@
         "outis":"Отис",
         "gregor":"Грегор"
     },
-    "MainLayoutContainer.ErrorBoundary.ErrorInfo": "Эта страница содержит ошибку. Пожалуйста, свяжитесь с нами, чтобы мы могли её исправить. :)"
+    "MainLayoutContainer.ErrorBoundary.ErrorInfo": "Эта страница содержит ошибку. Пожалуйста, свяжитесь с нами, чтобы мы могли её исправить. :)",
+    "FiltersSection2":{
+        "show":"Показать еще",
+        "hide":"Скрыть"
+    }
 }

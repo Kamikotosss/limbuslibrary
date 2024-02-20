@@ -295,5 +295,9 @@
         "outis":"Outis",
         "gregor":"Gregor"
     },
-    "MainLayoutContainer.ErrorBoundary.ErrorInfo": "This page has an error. Please contact us so we can fix it. :)"
+    "MainLayoutContainer.ErrorBoundary.ErrorInfo": "This page has an error. Please contact us so we can fix it. :)",
+    "FiltersSection2":{
+        "show":"Show all",
+        "hide":"Hide"
+    }
 }
