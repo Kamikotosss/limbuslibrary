@@ -278,11 +278,7 @@
         "bc" : " Base Power",
         "cg" : " Coin Power",
         "cp" : " Clash Power",
-        "weigth": " Attack Weight",
-        "[check]": "Check ",
-        "[checkpassed]": "Check Passed ",
-        "[checkfailed]": "Check Failed ",
-        "[skillend]":"[Skill End] "
+        "weigth": " Attack Weight"
     } ,
     "sinners":{
         "new":"NEW",
@@ -298,5 +294,6 @@
         "sinclair":"Sinclair",
         "outis":"Outis",
         "gregor":"Gregor"
-    }
+    },
+    "MainLayoutContainer.ErrorBoundary.ErrorInfo": "This page has an error. Please contact us so we can fix it. :)"
 }
