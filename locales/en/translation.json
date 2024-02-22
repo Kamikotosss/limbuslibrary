@@ -278,7 +278,8 @@
         "bc" : " Base Power",
         "cg" : " Coin Power",
         "cp" : " Clash Power",
-        "weigth": " Attack Weight"
+        "weigth": " Attack Weight",
+        "max": "Max."
     } ,
     "sinners":{
         "new":"NEW",
