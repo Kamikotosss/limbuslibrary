@@ -165,10 +165,11 @@
         "originalAuthor": "Original Document Author",
         "creator": "Website Creator",
         "workers.header": "Contributors to the Website:",
+        "questionnaire":"Full questionnaire on Great Limbus Library",
         "workers1": {
             "header": "Library Heads:",
             "1": "Ritsu",
-            "2": "GodMod",
+            "2": "GodMode",
             "3": "Kamikotosss"
         },
         "workers2": {

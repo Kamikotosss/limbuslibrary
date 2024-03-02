@@ -164,10 +164,11 @@
         "originalAuthor":"Автор оригинального дока",
         "creator":"Создатель сайта",
         "workers.header":"Над сайтом работали:",
+        "questionnaire":"Полный опросник по Great Limbus Library",
         "workers1":{
             "header":"Главы Библиотеки:",
             "1":"Ритсу в роли Аина",
-            "2":"GodMod в роли в роле Кармен",
+            "2":"GodMode в роли в роле Кармен",
             "3":"Kamikotosss в роли pma в роли Главы"
         },
         "workers2":{
