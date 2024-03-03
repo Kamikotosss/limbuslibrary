@@ -61,12 +61,22 @@
             "supportPassives":"Support passives"
         },
         "description":{
-            "SSS":"These Identities/EGOs are capable of effortlessly overcoming any in-game content.",
-            "SS":"Very powerful Identities/EGOs that just fall short of entering the SSS category.",
-            "S":"Strong Identities/EGOs that handle diverse content successfully but can be replaced by even more powerful representatives from the SS tier.",
-            "A":"Average Identities/EGOs with some strengths but also with weaknesses.",
-            "B":"Comparatively weak Identities/EGOs that should be chosen only in cases of extreme necessity.",
-            "C":"Ineffective Identities/EGOs; it's best to avoid choosing them as they are incapable of successfully accomplishing in-game tasks."
+            "identities":{
+                "SSS":"The strongest identities, with a wide range of usage and performing well in most situations",
+                "SS":"Very strong identities, with uncomplicated conditions for realization, but with potential/universality less than that of the SSS tier identities",
+                "S":"Strong identities that require a lot of conditions for their realization",
+                "A":"Average in strength identities. Not bad, but not something outstanding",
+                "B":"The level of strength of these identities is below average, they are easily replaced and rarely used",
+                "C":"Weak identities unable to deal effectively with the game content"
+            },
+            "ego":{
+                "SSS":"The strongest and most versatile EGOs, used effectively in the vast majority of situations",
+                "SS":"Very strong EGOs with a limited range of uses",
+                "S":"Strong EGOs used in rare or specific situations or not powerful enough for SS range",
+                "A":"Medium strong EGOs that are rarely used and are often replaced by their counterparts",
+                "B":"Mediocre EGOs that are rarely used and do little work",
+                "C":"Weak EGOs unable to compete with their counterparts"
+            }
         }
         
     },
@@ -168,19 +178,20 @@
         "questionnaire":"Full questionnaire on Great Limbus Library",
         "workers1": {
             "header": "Library Heads:",
-            "1": "Ritsu",
+            "1": "Ritsy",
             "2": "GodMode",
             "3": "Kamikotosss"
         },
         "workers2": {
-            "header": "Book Hunters (Editors):",
-            "1": "Clinch as a Regular Spotter of the 9th rank",
+            "header": "Book Hunters (Fixers):",
+            "1": "Klinch as a Average Grade 9 Fixer",
             "2": "ManulGod",
             "3": "hgjrtu",
             "4": "Sir Alonne",
             "5": "turbae_carissimus",
             "6": "morj.",
-            "7": "Licht & Ruchi as Workers for one Day"
+            "7": "Vicissitude as a gift",
+            "8": "Licht & Ruchi as Workers for one Day"
         },
         "workers3": {
             "header": "Special Thanks:",
