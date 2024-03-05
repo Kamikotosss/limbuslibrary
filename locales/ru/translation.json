@@ -261,7 +261,7 @@
         "supportPassive":"Саппорт пассивка",
         "tab":{
             "skills":"навыки",
-            "passive":"пассивки",
+            "passives":"пассивки",
             "sanity":"рассудок"
         }
     },
