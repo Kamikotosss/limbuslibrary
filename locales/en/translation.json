@@ -259,7 +259,12 @@
     },
     "EntityFullInfoSkills":{
         "battlePassive":"Battle passive",
-        "supportPassive":"Support passive"
+        "supportPassive":"Support passive",
+        "tab":{
+            "skills":"skills",
+            "passives":"passive",
+            "sanity":"sanity"
+        }
     },
     "SkillCoinDescription.clickToSeeDescription":"Click to see description",
     "SEOHelmet.keywords": "GLL, GreatLimbusLibrary, Limbus, Wiki, Database, Great Limbus Library, Limbus Company, Gacha, Tier List, Faust, Don Quixote, Yi Sang, Ryoshu, Mersault, Hong Lu, HeathCliff, Ishmael, Rodion, Sinclair, Outis, Gregor",
@@ -310,5 +315,10 @@
     "FiltersSection2":{
         "show":"Show all",
         "hide":"Hide"
+    },
+    "EntityFullInfoSanity":{
+        "PanicEffects":"Panic Effects",
+        "FactorsIncreasingSanity":"Factors Increasing Sanity",
+        "FactorsDecreasingSanity":"Factors Decreasing Sanity"
     }
 }
