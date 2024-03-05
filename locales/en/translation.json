@@ -262,7 +262,7 @@
         "supportPassive":"Support passive",
         "tab":{
             "skills":"skills",
-            "passives":"passive",
+            "passives":"passives",
             "sanity":"sanity"
         }
     },
