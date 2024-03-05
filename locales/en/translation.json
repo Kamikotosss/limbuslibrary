@@ -12,7 +12,7 @@
         "identities":"Identities list with filters",
         "ego":"EGOs list with filters",
         "statuses":"Information about buffs, debuffs and other statuses",
-        "tierlist":"Tier lists of Identities, EGOs and Passives"
+        "tierlist":"Tier lists of Identities and EGOs"
     },
     "EventsSection":{
         "header":"Active events",
@@ -50,15 +50,12 @@
     },
     "TierListNav":{
         "ego":"EGO",
-        "identities":"Identities",
-        "passives":"Passives"
+        "identities":"Identities"
     },
     "TierList":{
         "name":{
             "identities":"Identities",
-            "ego":"EGO",
-            "battlePassives":"Battle passives",
-            "supportPassives":"Support passives"
+            "ego":"EGO"
         },
         "description":{
             "identities":{
