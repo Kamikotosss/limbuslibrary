@@ -176,7 +176,7 @@
         "workers1": {
             "header": "Library Heads:",
             "1": "Ritsy",
-            "2": "GodMode",
+            "2": "The Cyan Sunset as Carmen",
             "3": "hgjrtu as the most sane tier list maker",
             "4": "Kamikotosss"
         },
@@ -189,7 +189,6 @@
             "5": "turbae_carissimus",
             "6": "morj. as the hardest worker (real)",
             "7": "Vicissitude as a gift",
-            "8": "The Cyan Sunset as Carmen",
             "9": "Licht & Ruchi as Workers for one Day"
         },
         "workers3": {
@@ -322,5 +321,8 @@
         "PanicEffects":"Panic Effects",
         "FactorsIncreasingSanity":"Factors Increasing Sanity",
         "FactorsDecreasingSanity":"Factors Decreasing Sanity"
+    },
+    "TierListDisclaimer":{
+        "header":""
     }
 }

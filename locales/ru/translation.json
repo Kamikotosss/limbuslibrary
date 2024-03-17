@@ -175,7 +175,7 @@
         "workers1":{
             "header":"Главы Библиотеки:",
             "1":"Ритсу в роли Аина",
-            "2":"GodMode в роли Кармен",
+            "2":"The Cyan Sunset в роли Кармен",
             "3":"hgjrtu в роли самого адекватного тирлистенка",
             "4":"Kamikotosss в роли pma в роли Главы"
         },
@@ -188,7 +188,6 @@
             "5":"turbae_carissimus в роли Бати",
             "6":"morj. в роли самого трудолюбивого работника (правда)",
             "7":"Vicissitude в роли Гифта",
-            "8":"The Cyan Sunset в роли Кармен",
             "9": "Licht & Ручи в ролях Работники на 1 день"
         },
         "workers3":{
@@ -322,5 +321,8 @@
         "PanicEffects":"Эффекты Паники",
         "FactorsIncreasingSanity":"Факторы, увеличивающие Рассудок (SP)",
         "FactorsDecreasingSanity":"Факторы, понижающие Рассудок (SP)"
+    },
+    "TierListDisclaimer":{
+        "header":""
     }
 }
