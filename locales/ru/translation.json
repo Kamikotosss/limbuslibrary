@@ -323,6 +323,36 @@
         "FactorsDecreasingSanity":"Факторы, понижающие Рассудок (SP)"
     },
     "TierListDisclaimer":{
-        "header":""
+        "header":"Дисклеймер"
+    },
+    "FiltersSection":{
+        "O":"0",
+        "OO":"00",
+        "OOO":"000",
+        "yi sang":"И Сан",
+        "faust":"Фауст",
+        "don quixote":"Дон Кихот",
+        "ryoshu":"Рёшу",
+        "mersault":"Мерсо",
+        "hong lu":"Хон Лу",
+        "heathcliff":"Хитклифф",
+        "ishmael":"Измаил",
+        "rodion":"Родя",
+        "sinclair":"Синклер",
+        "outis":"Отис",
+        "gregor":"Грегор",
+        "blunt":"Дробящий",
+        "slash":"Рубящий",
+        "pierce":"Пронзающий",
+        "evade":"Уклонение",
+        "counter":"Контратака",
+        "guard":"Блок",
+        "wrath":"Гнев",
+        "glut":"Чревоугодие",
+        "lust":"Похоть",
+        "sloth":"Лень",
+        "gloom":"Уныние",
+        "pride":"Гордость",
+        "envy":"Зависть"
     }
 }

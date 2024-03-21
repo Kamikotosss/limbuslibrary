@@ -323,6 +323,37 @@
         "FactorsDecreasingSanity":"Factors Decreasing Sanity"
     },
     "TierListDisclaimer":{
-        "header":""
+        "header":"Disclaimer"
+    },
+    "FiltersSection":{
+        "O":"0",
+        "OO":"00",
+        "OOO":"000",
+        "yi sang":"Yi Sang",
+        "faust":"Faust",
+        "don quixote":"Don Quixote",
+        "ryoshu":"Ryoshu",
+        "mersault":"Mersault",
+        "hong lu":"Hong Lu",
+        "heathcliff":"Hethcliff",
+        "ishmael":"Ishmael",
+        "rodion":"Rodion",
+        "sinclair":"Sinclair",
+        "outis":"Outis",
+        "gregor":"Gregor",
+        "blunt":"Blunt",
+        "slash":"Slash",
+        "pierce":"Pierce",
+        "evade":"Evade",
+        "counter":"Counter",
+        "guard":"Guard",
+        "wrath":"Wrath",
+        "glut":"Glut",
+        "lust":"Lust",
+        "sloth":"Sloth",
+        "gloom":"Gloom",
+        "pride":"Pride",
+        "envy":"Envy"
+
     }
 }
