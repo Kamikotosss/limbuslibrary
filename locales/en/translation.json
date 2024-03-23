@@ -19,6 +19,8 @@
         "eventStarts":"Event starts in: ",
         "eventEnds":"Event ends in: ",
         "eventEnded": "Event recently ended",
+        "startDateUnknown":"The starting date of the event is unknown",
+        "endDateUnknown":"The event has started. The ending date is unknown",
         "d":"d",
         "m":"m",
         "s":"s",
